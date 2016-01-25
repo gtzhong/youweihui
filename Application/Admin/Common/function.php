@@ -11,6 +11,15 @@
  * 后台公共文件
  * 主要定义后台公共函数库
  */
+ /**
+  * 获取广告类型
+  * @param string $field 属性
+  * @return string
+  */
+ function get_banner_type($field = ''){
+     $list = C('BANNER_TYPE');
+     return $field ? $list[$field] : '';
+ }
 
 /* 解析列表定义规则*/
 
@@ -357,7 +366,7 @@ function parse_field_attr($string) {
         // 支持读取配置参数（必须是数组类型）
         return C(substr($string,1,-1));
     }
-    
+
     $array = preg_split('/[,;\r\n]+/', trim($string, ",;\r\n"));
     if(strpos($string,':')){
         $value  =   array();

@@ -177,13 +177,16 @@ class OrderController extends AdminController {
                 $data['order_status'] = 3;
                 $data['kefu_intro'] = I('kefu_intro');
                 $result = $Order->save($data);
+                send_sms($order_info['mobile'], array('orderid'=>$order_id), 'unOrder');
                 break;
             case '4':
                 $pay_status = I('pay_status', 1, 'intval');
                 if ($pay_status == 2) {
                     $data['order_status'] = 5;
+                    transaction($order_id, $order_info['order_price'], UID, '旅游订单', '线下支付');
                 } else {
                     $data['order_status'] = 4;
+                    send_sms($order_info['mobile'], array('orderid'=>$order_id,'price'=>$order_info['order_price']), 'enOrder');
                 }
                 $data['pay_status'] = $pay_status;
                 $data['kefu_intro'] = I('kefu_intro');
@@ -205,6 +208,7 @@ class OrderController extends AdminController {
                 break;
         }
         if ($result) {
+
             $this->success('成功');
         } else {
             $this->error('失败');

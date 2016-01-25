@@ -11,7 +11,7 @@ class IndexController extends AddonsController{
     public $options;    //使用微信支付的Controller最好有一个统一的微信支付配置参数
     public $wxpaycfg;
     public function index($mp_id = 0){
-        
+
     }
 
     public function qrcode() {
@@ -87,7 +87,8 @@ class IndexController extends AddonsController{
         }
         $url2 = $result["code_url"];
         $this->assign('url2', $url2);
-        $this->display(T('Addons://Wxpay@Index/native'));
+        // echo '<pre>'; print_r($result); echo '</pre>'; exit;
+        $this->display(T('Addons://Wxpay@Index/native')); exit;
         // echo '<pre>'; print_r($result); echo '</pre>';
         // $url = 'http://paysdk.weixin.qq.com/example/qrcode.php?data=' . urlencode($url2);
         // $url = "http://".$_SERVER['HTTP_HOST'] . addons_url("Wxpay://Index/qrcode", array('data'=>base64_encode($url2)));

@@ -1,0 +1,87 @@
+<extend name="Public/base"/>
+<block name="body">
+	<!-- 标题 -->
+	<div class="main-title">
+		<h2>{$meta_title}({$_total})</h2>
+	</div>
+	<!-- 按钮工具栏 -->
+	<div class="cf">
+		<div class="fl">
+			<a href="{:U('dAdd', array('bid'=>$bid))}" class="btn">快速创建</a>
+			<a href="{:U('index')}" class="btn">广告位列表</a>
+		</div>
+		<!-- 高级搜索 -->
+		<div class="search-form fr cf">
+			<div class="sleft">
+				<input type="text" name="truename" class="search-input" value="{:I('truename')}" placeholder="请输广告名称">
+				<a class="sch-btn" href="javascript:void(0);" id="search" url="{:U('dList', array('bid'=>$bid), false)}"><i class="btn-search"></i></a>
+			</div>
+		</div>
+	</div>
+
+	<!-- 数据表格 -->
+    <div class="data-table">
+		<table>
+            <!-- 表头 -->
+            <thead>
+                <tr>
+                    <th class="row-selected row-selected"><input class="check-all" type="checkbox"></th>
+                    <th>ID</th>
+                    <th>广告名称</th>
+                    <th>广告图片</th>
+                    <th>排序</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+
+            <!-- 列表 -->
+            <tbody>
+                <volist name="_list" id="val">
+                    <tr>
+						<td><input class="ids" type="checkbox" name="id[]" value="{$val['id']}" /></td>
+						<td>{$val['id']}</td>
+						<td>{$val['title']}</td>
+						<td><img src="{$val['image']|get_cover='path'}" width="150" height="100"/></td>
+						<td>{$val['sort']}</td>
+						<td>
+							<a href="{:U('dEdit', array('id'=>$val['id']))}" class="authorize">修改</a>
+							<a href="{:U('dDel', array('id'=>$val['id']))}" class="confirm ajax-get">删除</a>
+						</td>
+                    </tr>
+                </volist>
+            </tbody>
+        </table>
+	</div>
+	<!-- 分页 -->
+    <div class="page">
+        {$_page}
+    </div>
+</div>
+
+</block>
+<block name="script">
+	<script type="text/javascript">
+	//搜索功能
+	$("#search").click(function(){
+		var url = $(this).attr('url');
+        var query  = $('.search-form').find('input').serialize();
+        query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g,'');
+        query = query.replace(/^&/g,'');
+        if( url.indexOf('?')>0 ){
+            url += '&' + query;
+        }else{
+            url += '?' + query;
+        }
+		window.location.href = url;
+	});
+	//回车搜索
+	$(".search-input").keyup(function(e){
+		if(e.keyCode === 13){
+			$("#search").click();
+			return false;
+		}
+	});
+	//导航高亮
+	highlight_subnav('{:U('index')}');
+	</script>
+</block>

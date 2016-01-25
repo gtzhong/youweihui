@@ -1,0 +1,154 @@
+<extend name="Public/base" />
+
+<block name="body">
+	<script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+	<div class="main-title cf">
+		<h2>{$meta_title}</h2>
+	</div>
+	<!-- 标签页导航 -->
+<div class="tab-wrap">
+	<ul class="tab-nav nav">
+		<empty name="line_id">
+			<volist name="setp" id="val">
+				<li <eq name="val['current']" value="1">class="current"</eq>><a href="javascript:void(0);">{$val['title']}</a></li>
+			</volist>
+		<else />
+			<volist name="setp" id="val">
+				<li data-tab="tab{$key}" <eq name="val['current']" value="1">class="current"</eq>><a href="{$val['url']}">{$val['title']}</a></li>
+			</volist>
+		</empty>
+	</ul>
+	<div class="tab-content">
+	<!-- 表单 -->
+	<form id="form" action="" method="post" class="form-horizontal">
+        <div id="tab1" class="tab-pane tab1 in">
+			<div class="form-item cf">
+				<div class="controls">
+					<label class="item-label">广告位名称<span class="check-tips">（必填）</span></label>
+					<input type="text" class="text input-large" name="name" value="{$info['name']|default=''}">
+				</div>
+			</div>
+			<div class="form-item cf">
+				<div class="controls">
+					<label class="item-label">广告位类型<span class="check-tips">（必填）</span></label>
+					<volist name="Think.config.BANNER_TYPE" id="val">
+						<label class="radio">
+							<input type="radio" value="{$key}" name="type" <eq name="info['type']" value="$key">checked="checked"</eq>>{$val}
+						</label>
+					</volist>
+				</div>
+			</div>
+			<div class="form-item cf">
+				<div class="controls">
+					<label class="item-label">开启图片<span class="check-tips">（必填）</span></label>
+					<label class="radio">
+						<input type="radio" value="1" name="allow_image" <eq name="info['allow_image']" value="1">checked="checked"</eq>>开启
+					</label>
+					<label class="radio">
+						<input type="radio" value="0" name="allow_image" <eq name="info['allow_image']" value="0">checked="checked"</eq>>关闭
+					</label>
+				</div>
+			</div>
+			<div class="form-item cf">
+				<div class="controls">
+					<label class="item-label">开启URL<span class="check-tips">（必填）</span></label>
+					<label class="radio">
+						<input type="radio" value="1" name="allow_url" <eq name="info['allow_url']" value="1">checked="checked"</eq>>开启
+					</label>
+					<label class="radio">
+						<input type="radio" value="0" name="allow_url" <eq name="info['allow_url']" value="0">checked="checked"</eq>>关闭
+					</label>
+				</div>
+			</div>
+			<div class="form-item cf">
+				<div class="controls">
+					<label class="item-label">开启描述<span class="check-tips">（必填）</span></label>
+					<label class="radio">
+						<input type="radio" value="1" name="allow_desc" <eq name="info['allow_desc']" value="1">checked="checked"</eq>>开启
+					</label>
+					<label class="radio">
+						<input type="radio" value="0" name="allow_desc" <eq name="info['allow_desc']" value="0">checked="checked"</eq>>关闭
+					</label>
+				</div>
+			</div>
+			<div class="form-item cf">
+				<div class="controls">
+					<label class="item-label">图片宽<span class="check-tips"></span></label>
+					<input type="text" class="text input-mid" name="width" value="{$info['width']|default=0}">
+				</div>
+			</div>
+			<div class="form-item cf">
+				<div class="controls">
+					<label class="item-label">图片高<span class="check-tips"></span></label>
+					<input type="text" class="text input-mid" name="height" value="{$info['height']|default=0}">
+				</div>
+			</div>
+			<div class="form-item cf">
+				<div class="controls">
+					<label class="item-label">排序<span class="check-tips"></span></label>
+					<input type="text" class="text input-mid" name="sort" value="{$info['sort']|default=0}">
+				</div>
+			</div>
+		</div>
+		<div class="form-item cf">
+			<button class="btn btn-return ajax-post hidden" id="submit" type="submit" name="0" target-form="form-horizontal">确定保存</button>
+			<input type="hidden" name="id" value="{$info['id']}"/>
+		</div>
+	</form>
+</div>
+</block>
+
+<block name="script">
+<script type="text/javascript">
+
+$(function(){
+	//导航高亮
+	highlight_subnav('{:U('index')}');
+
+	var rules = [{$data['line_type']}];
+	$('.auth_rules').each(function(){
+		if( $.inArray( parseInt(this.value,10),rules )>-1 ){
+			$(this).prop('checked',true);
+		}
+		if(this.value==''){
+			$(this).closest('span').remove();
+		}
+	});
+});
+</script>
+<script type="text/javascript">
+$(".uploads").each(function(i){
+	var Obj = $(this),
+		Upload = $(this).find('[type=file]'),
+		Name = Upload.attr('name') ? Upload.attr('name') : 'img';
+	Upload.attr('id', 'id_' + (new Date()).getTime()+Math.floor(Math.random()*1000));
+	Upload.uploadify({
+		"height"          : 30,
+		"swf"             : "__STATIC__/uploadify/uploadify.swf",
+		"fileObjName"     : "download",
+		"buttonText"      : "选择图片",
+		"uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+		"width"           : 120,
+		'removeTimeout'	  : 1,
+		'multi'			  : true,
+		'fileTypeExts'	  : '*.jpg; *.png; *.gif;',
+		"onUploadSuccess" : function(file, data){
+			var data = $.parseJSON(data);
+			var src = '';
+			if(data.status){
+				src = data.url || '__ROOT__' + data.path
+				Obj.find('.upload-img-box').append(
+					'<div class="upload-pre-item"><i onclick="removeImage(this)">X</i><input type="hidden" name="'+Name+'[]" value="' + data.id + '"/><img src="' + src + '"/></div>'
+				);
+			}
+		},
+		'onFallback' : function() {
+			alert('未检测到兼容版本的Flash.');
+		}
+	});
+})
+function removeImage(dom){
+	$(dom).parent().remove();
+}
+</script>
+</block>

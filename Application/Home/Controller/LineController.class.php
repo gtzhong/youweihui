@@ -104,8 +104,10 @@ class LineController extends HomeController {
             $Order = D('Order');
             $order_id = 'NS' . date('YmdHis') . mt_rand(1000, 9999);
             $uid = is_login();
+            $site_id = I('site_id', 0, 'intval');
             if ($uid) {
-                $result = $Order->input($order_id, $uid, 1);
+                $result = $Order->input($order_id, $uid, $site_id);
+                $mobile = get_userinfo($uid, 3);
             } else {
                 $mobile = I('mobile', '', 'trim');
                 /* 调用注册接口注册用户 */
@@ -115,16 +117,17 @@ class LineController extends HomeController {
                     $password = mt_rand(100000, 999999);
                     $uid = $User->register('', $password, '', $mobile);
                     if(0 < $uid){ //注册成功
-                        send_sms($mobile, '您的密码：'. $password);
-                        $result = $Order->input($order_id, $uid, 1);
+                        send_sms($mobile, array('mobile'=>$mobile, 'password'=>$password), 'password');
+                        $result = $Order->input($order_id, $uid, $site_id);
                     }
                 } else {
                     $user_info = $User->getinfo($mobile, 3);
-                    $result = $Order->input($order_id, $user_info[0], 1);
+                    $result = $Order->input($order_id, $user_info[0], $site_id);
                 }
             }
 
             if ($result) {
+                send_sms($mobile, array('orderid'=>$order_id), 'onOrder');
                 $this->redirect('checkOrder', array('order_id'=>$order_id));
             } else {
                 $this->error('订单提交失败');
@@ -133,21 +136,17 @@ class LineController extends HomeController {
             $line_id = I('line_id', 0, 'intval');
             $tc_id = I('type_id', 0, 'intval');
             $date = I('date', 0, 'strtotime');
-
             if (empty($line_id) || empty($tc_id) || empty($date)) {
                 $this->error('无效参数');
             }
             // 线路信息
             $line_info = M('Line')->find($line_id);
-
-
             // 套餐信息
             $map = array(
                 'line_id' => $line_id,
                 'end_time' => array('egt', strtotime('+'.$line_info['earlier_date'].'day'))
             );
             $line_tc = M('LineTc')->where($map)->select();
-
             if (empty($line_tc)) {
                 $this->error('没有报价方案');
             }
@@ -175,8 +174,6 @@ class LineController extends HomeController {
             if (empty($tc_info['price_info'])) {
                 $this->error('没有价格');
             }
-
-
             $this->assign('line_info', $line_info);
             $this->assign('line_tc', $line_tc);
             $this->assign('tc_info', $tc_info);

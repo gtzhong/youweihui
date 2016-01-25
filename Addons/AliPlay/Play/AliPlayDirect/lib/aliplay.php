@@ -1,10 +1,10 @@
 <?php
 
-define("PARTNER", "2088911308645382");
-define("KEY", "v4ckcnky956i90077bih10ck7qh5824q");
-define("SELLER_EMAIL", "mali@weiaifu61.com");
-define("NOTIFY_URL", "http://shangchuan.net.cn/Addons/AliPlay/Play/jishi/notify_url.php");
-define("RETURN_URL", "http://shangchuan.net.cn/Addons/AliPlay/Play/jishi/return_url.php");
+define("PARTNER", "2088911598821912");
+define("KEY", "b5f174vxc1uvd2mgyyame4fkf0gor8a2");
+define("SELLER_EMAIL", "zhifubao@youweihui.com");
+define("NOTIFY_URL", "");
+define("RETURN_URL", "");
 $notify_url=NOTIFY_URL;
 $return_url=RETURN_URL;
 $partner=PARTNER;

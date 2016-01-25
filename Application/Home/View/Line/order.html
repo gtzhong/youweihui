@@ -7,6 +7,7 @@
         <div class="ddzf_main1_bottom_left">
             <form id="modiform" name="modiform" method="post" action="{:U('Line/order')}">
                 <input id="line_id" name="line_id" type="hidden" value="{$line_info['line_id']}">
+                <input id="site_id" name="site_id" type="hidden" value="{$line_info['site_id']}">
                 <input id="type_id" name="type_id" type="hidden" value="{$tc_info['tc_id']}">
                 <input id="adult_price" name="adult_price" type="hidden" value="{$tc_info['price_info'][0]}">
                 <input id="child_price" name="child_price" type="hidden" value="{$tc_info['price_info'][1]}">

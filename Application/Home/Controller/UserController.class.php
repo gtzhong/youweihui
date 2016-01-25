@@ -18,6 +18,9 @@ class UserController extends HomeController {
 	/* 用户中心首页 */
 	public function index(){
 		$uid = is_login();
+		if (!$uid) {
+			$this->redirect('User/login');
+		}
 		$Order = M('Order');
 		$map = array(
 			'user_id' => $uid
@@ -80,34 +83,27 @@ class UserController extends HomeController {
 		// 	'status' => 2
 		// );
 		// $reply_count = M('Message')->where($map)->count();
-
-
 		$this->assign('chuli_count', $chuli_count);
 		$this->assign('pingjia_count', $pingjia_count);
 		$this->assign('collect_count', $collect_count);
-
-
 		$this->assign('order_lists', $order_lists);
 		$this->display();
 	}
 
 	// 注册
 	public function register($mobile = '', $password = '', $sms_code = '', $email = ''){
+		if (is_login()) {
+			$this->redirect('User/index');
+		}
 		if(!C('USER_ALLOW_REGISTER')){
 			$this->error('注册已关闭');
 		}
 		if(IS_POST){ //注册用户
 			/* 检测验证码 */
-			$map = array(
-				'mobile' => $mobile,
-				'code' => $sms_code,
-				'status' => 1
-			);
-			$count = M('SmsLog')->where($map)->count();
-			if(!$count){
+			$code = session('_register_code');
+			if (empty($code) || $code != $sms_code) {
 				$this->error('验证码输入错误！');
 			}
-
 			/* 调用注册接口注册用户 */
 			$User = new UserApi;
 			$uid = $User->register('', $password, $email, $mobile);
@@ -126,12 +122,14 @@ class UserController extends HomeController {
 
 	/* 登录页面 */
 	public function login($mobile = '', $password = '', $verify = ''){
+		if (is_login()) {
+			$this->redirect('User/index');
+		}
 		if(IS_POST){ //登录验证
 			/* 检测验证码 */
 			// if(!check_verify($verify)){
 			// 	$this->error('验证码输入错误！');
 			// }
-
 			/* 调用UC登录接口登录 */
 			$user = new UserApi;
 			$uid = $user->login($mobile, $password, 3);
@@ -529,6 +527,8 @@ class UserController extends HomeController {
         if ( IS_POST ) {
 
         }else{
+			$user_info = D('Member')->info($uid);
+			$this->assign('user_info', $user_info);
             $this->display();
         }
     }
@@ -560,14 +560,8 @@ class UserController extends HomeController {
 			$this->error('手机号错误');
 		}
 		$rand = mt_rand(1000, 9999);
-		M('SmsLog')->add(array(
-			'type'		=> '注册',
-			'mobile' 	=> $mobile,
-			'code' 		=> $rand,
-			'ctime'		=> NOW_TIME,
-			'utime'		=> NOW_TIME,
-			'status'	=> 1
-		));
+		session('_register_code', $rand);
+		send_sms($mobile, array('code'=>$rand), 'register');
 		$this->success($rand);
 	}
 

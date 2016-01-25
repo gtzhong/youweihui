@@ -12,17 +12,72 @@ const ONETHINK_VERSION    = '1.1.141101';
 const ONETHINK_ADDON_PATH = './Addons/';
 
 
-
 // 吴文豹 start
-function send_sms($mobile, $content) {
+function send_sms($mobile, $data, $tid = 'default') {
+    $temp = array(
+        'password' => '系统自动生成帐号：mobile，会员随机密码：password，请妥善保管。客服电话:kefu',
+        'register' => '注册会员验证码：code，请完成验证，如非本人操作，请忽略本短信。客服电话:kefu',
+        'onOrder' => '亲，您的订单已提交成功，订单编号orderid，我们会尽快处理并联系您确认，请耐心等待，客服电话:kefu',
+        'unOrder' => '抱歉，订单出错，已被处理为无效订单，订单编号orderid。如有疑问请咨询客服，客服电话：kefu。',
+        'enOrder' => '亲，您提交的订单已被确认啦，订单编号orderid，旅游费用总计price元，请尽快付款以保证预订成功噢！客服电话：kefu。',
+        'suOrder' => '亲，您的订单已确认并付完全款，订单编号orderid，已成功预订旅游产品，祝您旅途愉快。客服电话：kefu。',
+        'default' => 'content'
+    );
+    $data['kefu'] = '4000000000';
+    // $content = str_replace('%s', $data, $temp[$tid]);
+    $content = strtr($temp[$tid], $data);
+    // $para = array(
+    //     'userid' => '123456',
+    //     'account' => '账号',
+    //     'password' => '密码',
+    //     'mobile' => $mobile,
+    //     'content' => $content . '【游尾会】',
+    //     'sendTime' => '',
+    //     'action' => 'send',
+    //     'extno' => '',
+    // );
+    // $curl = curl_init('http://115.29.101.9:9001/sms.aspx');
+	// curl_setopt($curl, CURLOPT_HEADER, 0 ); // 过滤HTTP头
+	// curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);// 显示输出结果
+	// curl_setopt($curl, CURLOPT_POST, true); // post传输数据
+	// curl_setopt($curl, CURLOPT_POSTFIELDS, $para);// post传输数据
+	// $responseText = curl_exec($curl);
+	// //var_dump( curl_error($curl) );//如果执行curl过程中出现异常，可打开此开关，以便查看异常内容
+	// curl_close($curl);
+    // $responseArray = json_decode(json_encode((array) simplexml_load_string($responseText)), true);
+    $responseArray = array(
+        'message' => '成功',
+        'returnstatus' => 'Success',
+    );
+    $data = array(
+        'mobile' => $mobile,
+        'content' => $content,
+        'message' => $responseArray['message'],
+        'create_time' => NOW_TIME,
+        'status' => ($responseArray['returnstatus'] == 'Success') ? 1 : 0
+    );
+    M('SmsLog')->add($data);
+	return $data['status'];
+}
 
-    return true;
+function http_post($url, $para) {
+	$curl = curl_init($url);
+	curl_setopt($curl, CURLOPT_HEADER, 0 ); // 过滤HTTP头
+	curl_setopt($curl,CURLOPT_RETURNTRANSFER, 1);// 显示输出结果
+	curl_setopt($curl,CURLOPT_POST,true); // post传输数据
+	curl_setopt($curl,CURLOPT_POSTFIELDS,$para);// post传输数据
+	$responseText = curl_exec($curl);
+	//var_dump( curl_error($curl) );//如果执行curl过程中出现异常，可打开此开关，以便查看异常内容
+	curl_close($curl);
+	return $responseText;
 }
 
 /**
  * 交易流水
  */
 function transaction($order_id, $order_price, $from_user, $tran_type = '旅游订单', $pay_type = '微信扫码'){
+    $mobile = M('Order')->where(array('order_id'=>$order_id))->getField('mobile');
+    send_sms($mobile, array('orderid'=>$order_id), 'suOrder');
     $data = array(
         'tran_type' => $tran_type,
         'pay_type' => $pay_type,
