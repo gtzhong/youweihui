@@ -43,10 +43,10 @@
                                         <a href="{:U('Article/index',array('catid'=>40))}" title="">
                                             <em style=" width:434px; display:block;">帮助中心</em>
                                         </a>
-                                        <a href="#" title="">
+                                        <a href="{:U('Article/detail/id/9')}" title="">
                                             <em style=" width:434px; display:block;">关于我们</em>
                                         </a>
-                                        <a href="#" title="">
+                                        <a href="{:U('Article/detail/id/11')}" title="">
                                             <em style=" width:434px; display:block;">友情链接</em>
                                         </a>
                                     </span>
@@ -59,21 +59,10 @@
                                     <p>
                                         <img src="__IMG__/bg22.png" width="31" height="24" alt=""> 签证</p>
                                     <span class="fix">
-                                        <a href="#" title="">
-                                            <em>亚洲</em>
-                                        </a>
-                                        <a href="#" title="">
-                                            <em>非洲</em>
-                                        </a>
-                                        <a href="#" title="">
-                                            <em>欧洲</em>
-                                        </a>
-                                        <a href="#" title="">
-                                            <em>澳洲</em>
-                                        </a>
-                                        <a href="#" title="">
-                                            <em>美洲</em>
-                                        </a>
+
+                                        <volist name=":get_visa_catlist(0,'Visa/index/catid/')" id="val">
+                                           <a href="{$val['url']}" title=""><em>{$val['title']}</em></a>
+                                        </volist>
                                     </span>
                                 </li>
                             </ul>
@@ -88,7 +77,7 @@
                                             <em>旅游资讯</em>
                                         </a>
                                         <br />
-                                        <a href="#" title="">
+                                        <a href="{:U('Article/index',array('catid'=>1))}" title="">
                                             <em>旅游公告</em>
                                         </a>
                                         <br />
@@ -183,7 +172,11 @@
                     </div>
                 </li>
                 <li><a href="{:U('Visa/index/catid/1')}">签证<img src="__IMG__/bg3.png" width="8" height="5" alt=""></a>
-                    <div class="xl"> <a href="#" title="">华北</a><a href="#" title="">东北</a><a href="#" title="">西北</a><a href="#" title="">华东</a><a href="#" title="">华南</a><a href="#" title="">西南</a> </div>
+                    <div class="xl">
+                      <volist name=":get_visa_catlist(0,'Visa/index/catid/')" id="val">
+                         <a href="{$val['url']}" title="">{$val['title']}</a>
+                      </volist>
+                     </div>
                 </li>
                 <li><a href="{:U('Article/index/catid/1')}">旅游资讯</a></li>
                 <li><a href="{:U('Article/index/catid/2')}">旅游指南</a></li>

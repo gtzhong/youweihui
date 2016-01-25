@@ -6,23 +6,24 @@
             <dl>
                 <dt><img src="__IMG__/bg32.png" width="34" height="34" alt="">关于游尾会</dt>
                 <dd>
-                    <a href="#">公司简介</a>
-                    <a href="#">联系我们</a>
+                  <volist name=":get_article_position(44,0,5)" id="val">
+                      <a href="{$val['url']}">{$val['title']}</a>
+                  </volist>
                 </dd>
             </dl>
             <dl>
-                <dt><img src="__IMG__/bg33.png" width="34" height="34" alt="">关于游尾会</dt>
+                <dt><img src="__IMG__/bg33.png" width="34" height="34" alt="">产品服务</dt>
                 <dd>
-                    <a href="#">特价旅游</a>
-                    <a href="#">全部尾单</a>
-                    <a href="#">出境特卖</a>
-                    <a href="#">国内特卖</a>
-                    <a href="#">签证旅游</a>
+
+                    <a href="{:get_line_cate(1,'url')}">全部尾单</a>
+                    <a href="{:get_line_cate(6,'url')}">出境特卖</a>
+                    <a href="{:get_line_cate(5,'url')}">国内特卖</a>
+                    <a href="{:U('Visa/index/catid/1')}">签证旅游</a>
                 </dd>
             </dl>
             <dl>
                 <dt><img src="__IMG__/bg34.png" width="34" height="34" alt="">旅游资讯</dt>
-                <dd>
+                <dd style="display:none">
                     <a href="#">国外资讯</a>
                     <a href="#">国内资讯</a>
                 </dd>
@@ -30,16 +31,16 @@
             <dl>
                 <dt><img src="__IMG__/bg35.png" width="34" height="34" alt="">旅游指南</dt>
                 <dd>
-                    <a href="#">出境指南</a>
-                    <a href="#">国内指南</a>
+                    <a href="{:U('Article/index/catid/42')}">出境指南</a>
+                    <a href="{:U('Article/index/catid/43')}">国内指南</a>
                 </dd>
             </dl>
             <dl>
-                <dt><img src="__IMG__/bg36.png" width="34" height="34" alt="">关于游尾会</dt>
+                <dt><img src="__IMG__/bg36.png" width="34" height="34" alt="">帮助中心</dt>
                 <dd>
-                    <a href="#">积分规则</a>
-                    <a href="#">用户协议</a>
-                    <a href="#">使用条款</a>
+                  <volist name=":get_article_position(40,0,5)" id="val">
+                      <a href="{$val['url']}">{$val['title']}</a>
+                  </volist>
                 </dd>
             </dl>
             <dl>
