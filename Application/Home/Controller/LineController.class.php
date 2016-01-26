@@ -35,6 +35,14 @@ class LineController extends HomeController {
               $line_lists[$key]['url'] = U('Line/show', array('id'=>$val['line_id']));
         }
 
+        $LineView = D('LineView');
+        $map = array(
+            // 'type_id' => array('in', '7,28'),
+            // 'end_time' => array('gt', NOW_TIME),
+            'line_id' => 17
+        );
+        $list = $LineView->where($map)->order('end_time desc, line_id desc')->group('line_id')->select();
+        print_r($list);
 
         $this->assign('line_lists', $line_lists);
         $this->assign('_page', $_page);

@@ -28,8 +28,8 @@ function send_sms($mobile, $data, $tid = 'default') {
     $content = strtr($temp[$tid], $data);
     // $para = array(
     //     'userid' => '123456',
-    //     'account' => '账号',
-    //     'password' => '密码',
+    //     'account' => 'ywhui',
+    //     'password' => '游尾会601',
     //     'mobile' => $mobile,
     //     'content' => $content . '【游尾会】',
     //     'sendTime' => '',
@@ -70,6 +70,31 @@ function http_post($url, $para) {
 	//var_dump( curl_error($curl) );//如果执行curl过程中出现异常，可打开此开关，以便查看异常内容
 	curl_close($curl);
 	return $responseText;
+}
+
+/**
+ * 获取广告位
+ * @param   int         $id   广告位id
+ * @param   int/string  $limit   数量
+ * @return  array
+ */
+function get_banner($id = 0, $limit = 0){
+    if (empty($id)) {
+        return array();
+    } else {
+        $model = M('BannerData');
+        $map = array();
+        $map['bid'] = $id;
+        if (empty($limit)) {
+            $limit = '';
+        }
+        $lists = $model->cache(false, 60)->where($map)->order('sort desc, id desc')->limit($limit)->select();
+        if ($lists) {
+            return $lists;
+        } else {
+            return array();
+        }
+    }
 }
 
 /**

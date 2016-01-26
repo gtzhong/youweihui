@@ -29,11 +29,11 @@ class LineModel extends RelationModel{
           'as_fields' => 'price,best_price,date_price_data,update_price_explan',
           ),
       'Line_type'=>array(
-              'mapping_type'  => self::HAS_ONE,
-              'class_name'    => 'Line_type',
-              'foreign_key'   => 'type_id',
-              'as_fields' => 'line_id',
-              ),
+          'mapping_type'  => self::HAS_ONE,
+          'class_name'    => 'Line_type',
+          'foreign_key'   => 'type_id',
+          'as_fields' => 'line_id',
+          ),
       );
 
 
