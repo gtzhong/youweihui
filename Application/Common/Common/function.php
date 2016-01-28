@@ -89,6 +89,9 @@ function get_banner($id = 0, $limit = 0){
             $limit = '';
         }
         $lists = $model->cache(false, 60)->where($map)->order('sort desc, id desc')->limit($limit)->select();
+        foreach($lists as $k=>$val){
+          $lists[$k]['image'] = get_cover($val['image'],'path');
+        }
         if ($lists) {
             return $lists;
         } else {
@@ -210,32 +213,18 @@ function get_start_date($data){
  * @author huajie <banhuajie@163.com>
  */
 function get_line_position($catid='',$posid=1,$num=5,$order='line_id desc'){
-    $Line = M('Line');
-    $Line_type = M('Line_type');
-    $Line_tc = M('Line_tc');
-    $map_type = array();
-    $map_type['type_id'] = $catid ? $catid : '';
-
-    $line_id = $Line_type->field('line_id')->where($map_type)->order("$order")->select();
-    $line_lists = array();
-    foreach($line_id as $lid){
-         $lid = $lid['line_id'];
-         $line_list = $Line->where("line_id=$lid AND is_position=$posid AND status = 1")->select();
-         $line_lists[] =  $line_list[0];
-    }
-    $line_lists = array_filter($line_lists);
-    $line_lists = array_slice($line_lists,0,$num);
+    $LineView = D('LineView');
+    $map = array(
+        'is_position' => 1,
+        'type_id' =>   $catid,
+        'end_time' => array('gt', NOW_TIME),
+        'is_default' => 1,
+    );
+    $line_lists = $LineView->field('dest,starting')->where($map)->order("$order")->select();
     foreach ($line_lists as $key => $val) {
-          $map = array();
-          $map['line_id&is_default'] =array($val['line_id'],1,'_multi'=>true);
-          $res = get_tc_val($map);
-          $line_lists[$key]['price'] = $res['price'];
-          $line_lists[$key]['best_price'] = $res['best_price'];
           $line_lists[$key]['img'] = get_cover(array_shift(explode(',', $val['images'])), 'path');
           $line_lists[$key]['url'] = U('Line/show', array('id'=>$val['line_id']));
     }
-
-
     return $line_lists;
 }
 /*
@@ -270,20 +259,6 @@ function get_line_cate_lists($catid='', $num=5, $order='sort asc'){
             }
             return $cat_info;
 }
-/**
- * 线路分页
- */
-function pages($sql,$num=5){
-      $Model = new \Think\Model();
-      $count =  $Model->query($sql);
-      $count = $count[0]['num'];
-			$Page  = new \Think\Page($count,$num);
-      $Page->setConfig('prev','《上一页');
-      $Page->setConfig('next','下一页》');
-			$show  = $Page->show();// 分页显示输出
-			return $show;
-}
-
 
 function get_article_position($catid=1,$posid=1,$num=5){
       $Document = M('Document');

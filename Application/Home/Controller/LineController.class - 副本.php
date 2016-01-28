@@ -8,31 +8,43 @@ class LineController extends HomeController {
 
     // 线路列表
     public function index(){
-        $LineView = D('LineView');
+        //$Line_type = M('Line_type');
         $catid =  I('get.catid',1);
+        $sql = "select count(*) as num from __LINE_TYPE__ as a,__LINE__ as b
+        where a.type_id = $catid and a.line_id = b.line_id and b.status=1";
         $pageNum = 10;
+        $_page = pages($sql,$pageNum);
         $nowPage =  I('get.p',1);
         $firstRow = ($nowPage-1)*$pageNum;
 
-        $map = array(
-            'type_id' =>   $catid,
-            'end_time' => array('gt', NOW_TIME),
-            'is_default' => 1,
-        );
+       $Model = new \Think\Model();
+       $line_lists =  $Model->query("select a.*, b.* from __LINE_TYPE__ as a,
+       __LINE__ as b where a.type_id = $catid and a.line_id = b.line_id and b.status=1
+       order by b.update_time desc, b.line_id desc limit $firstRow,$pageNum");
+        $line_lists = array_filter($line_lists);
 
+        foreach ($line_lists as $key => $val) {
+      		    $map_two = array();
+      		    $map_two['line_id&is_default'] =array($val['line_id'],1,'_multi'=>true);
+      		    $res = get_tc_val($map_two);
 
-        $list = $LineView->field('dest,starting')->where($map)->order('end_time desc, line_id desc')->limit($firstRow,$pageNum)->group('line_id')->select();
-        foreach ($list as $key => $val) {
-             $list[$key]['start_date'] = get_start_date($val['date_price_data']);
-             $list[$key]['img'] = get_cover(array_shift(explode(',', $val['images'])), 'path');
-             $list[$key]['url'] = U('Line/show', array('id'=>$val['line_id']));
+              $line_lists[$key]['price'] = $res['price'];
+              $line_lists[$key]['best_price'] = $res['best_price'];
+      		    $line_lists[$key]['start_date'] = get_start_date($res['date_price_data']);
+              $line_lists[$key]['img'] = get_cover(array_shift(explode(',', $val['images'])), 'path');
+              $line_lists[$key]['url'] = U('Line/show', array('id'=>$val['line_id']));
         }
 
+        $LineView = D('LineView');
+        $map = array(
+            // 'type_id' => array('in', '7,28'),
+            // 'end_time' => array('gt', NOW_TIME),
+            'line_id' => 17
+        );
+        $list = $LineView->where($map)->order('end_time desc, line_id desc')->group('line_id')->select();
+        //print_r($list);
 
-
-        $count = $LineView->where($map)->count();
-        $_page = article_pages($count,$pageNum);
-        $this->assign('list', $list);
+        $this->assign('line_lists', $line_lists);
         $this->assign('_page', $_page);
         $this->display();
     }

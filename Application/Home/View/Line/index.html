@@ -9,14 +9,28 @@
         <div class="yk_01 fix">
             <span>出发城市：</span>
             <div class="yy1">
-                <a href="#" class="ya3">全部</a><a href="#">北京/天津</a><a href="#">东北/沈阳/长春/哈尔滨</a><a href="#">华东/上海/杭州/南京</a><a href="#">西南/成都/重庆/昆明</a>
+                <a href="#" class="ya3">全部</a>
+                <a href="#">北京/天津</a>
+                <a href="#">东北/沈阳/长春/哈尔滨</a>
+                <a href="#">华东/上海/杭州/南京</a>
+                <a href="#">西南/成都/重庆/昆明</a>
             </div>
         </div>
         <div class="yk_01 fix">
            <div class="fix yfff">
                 <span>目的地：</span>
                 <div class="yy1">
-                    <a href="#" class="ya3">全部</a><a href="#">塞舌尔</a><a href="#">港澳台</a><a href="#">埃及</a><a href="#">南非</a><a href="#">肯尼亚</a><a href="#">坦桑尼亚</a><a href="#">毛里求斯</a><a href="#">牙买加</a><a href="#">巴厘岛</a><a href="#">塞班岛</a>
+                    <a href="#" class="ya3">全部</a>
+                    <a href="#">塞舌尔</a>
+                    <a href="#">港澳台</a>
+                    <a href="#">埃及</a>
+                    <a href="#">南非</a>
+                    <a href="#">肯尼亚</a>
+                    <a href="#">坦桑尼亚</a>
+                    <a href="#">毛里求斯</a>
+                    <a href="#">牙买加</a>
+                    <a href="#">巴厘岛</a>
+                    <a href="#">塞班岛</a>
                 </div>
                 <div class="yy2">
                     <a href="#" class="ya4">更多</a>
@@ -25,7 +39,24 @@
             </div>
             <div class="ydiv6 fix">
             	<div class="yydiv">
-                	<a href="#">全部</a><a href="#">泰国</a><a href="#">马来西亚</a><a href="#">新加坡</a><a href="#">菲律宾</a><a href="#">印度尼西亚</a><a href="#">柬埔寨</a><a href="#">越南</a><a href="#">北马里亚纳</a><a href="#">马尔代夫</a><a href="#">韩国</a><a href="#">日本</a><a href="#">中国香港</a><a href="#">尼泊尔</a><a href="#">中国澳门 </a><a href="#">文莱</a><a href="#">斐济 </a><a href="#">印度</a>
+                	<a href="#">全部</a>
+                  <a href="#">泰国</a>
+                  <a href="#">马来西亚</a>
+                  <a href="#">新加坡</a>
+                  <a href="#">菲律宾</a>
+                  <a href="#">印度尼西亚</a>
+                  <a href="#">柬埔寨</a>
+                  <a href="#">越南</a>
+                  <a href="#">北马里亚纳</a>
+                  <a href="#">马尔代夫</a>
+                  <a href="#">韩国</a>
+                  <a href="#">日本</a>
+                  <a href="#">中国香港</a>
+                  <a href="#">尼泊尔</a>
+                  <a href="#">中国澳门 </a>
+                  <a href="#">文莱</a>
+                  <a href="#">斐济 </a>
+                  <a href="#">印度</a>
                 </div>
                 <div class="yydiv">
                 	<a href="#">全部2</a><a href="#">泰国</a><a href="#">马来西亚</a><a href="#">新加坡</a><a href="#">菲律宾</a><a href="#">印度尼西亚</a><a href="#">柬埔寨</a><a href="#">越南</a><a href="#">北马里亚纳</a><a href="#">马尔代夫</a><a href="#">韩国</a><a href="#">日本</a><a href="#">中国香港</a><a href="#">尼泊尔</a><a href="#">中国澳门 </a><a href="#">文莱</a><a href="#">斐济 </a><a href="#">印度</a>
@@ -38,19 +69,29 @@
         <div class="yk_01 fix">
             <span>参团性质：</span>
             <div class="yy1">
-                <a href="#" class="ya3">全部</a><a href="#">跟团游</a><a href="#">自由行</a><a href="#">游轮</a><a href="#">自驾游</a><a href="#">主题游</a>
+                <a href="#" class="ya3">全部</a>
+                <volist name=":C('CAN_TUAN')" id="val">
+                    <a href="{$key}">{$val}</a>
+                </volist>
             </div>
         </div>
         <div class="yk_01 fix">
             <span>旅行天数：</span>
             <div class="yy1">
-                <a href="#" class="ya3">全部</a><a href="#">7天</a><a href="#">15天</a><a href="#">1月</a>
+                <a href="#" class="ya3">全部</a>
+                <a href="#">7天</a>
+                <a href="#">15天</a>
+                <a href="#">1月</a>
             </div>
         </div>
         <div class="yk_01 fix ybbb">
             <span>价格区间：</span>
             <div class="yy1">
-                <a href="#" class="ya3">全部</a><a href="#">1000-2000元</a><a href="#">2000-3000元</a><a href="#">3000-5000元</a><a href="#">5000元以上</a>
+                <a href="#" class="ya3">全部</a>
+                <a href="#">1000-2000元</a>
+                <a href="#">2000-3000元</a>
+                <a href="#">3000-5000元</a>
+                <a href="#">5000元以上</a>
             </div>
         </div>
     </section>
@@ -60,7 +101,7 @@
                 <span>排序条件：</span><a href="#" class="xz">默认</a><a href="#">销量</a><a href="#">价格</a>
             </div>
             <div class="y_div3">
-                <volist name="line_lists" id="val">
+                <volist name="list" id="val">
                     <div class="y_k02 fix">
                         <img src="<empty name="val['img']">__IMG__/y_04.jpg<else/>{$val['img']}</empty>" alt="{$val['title']}" width="262" height="194" class="fl">
                         <div class="y_art02 fl">
@@ -84,7 +125,7 @@
       <volist name=":get_line_position(2)" id="val">
 
             <div class="y_k_03">
-                <a href="{$val['url']}">{$val['sub_title']}</a>
+                <a href="{$val['url']}">{$val['title']}</a>
                 <div class="yddd fix">
                     <a href="{$val['url']}"><img src="<empty name="val['img']">__IMG__/y_04.jpg<else/>{$val['img']}</empty>" width="160" height="118" class="fl"></a>
                     <div class="yar1 fr">

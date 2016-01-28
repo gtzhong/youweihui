@@ -44,8 +44,8 @@
 						<td><img src="{$val['image']|get_cover='path'}" width="150" height="100"/></td>
 						<td>{$val['sort']}</td>
 						<td>
-							<a href="{:U('dEdit', array('id'=>$val['id']))}" class="authorize">修改</a>
-							<a href="{:U('dDel', array('id'=>$val['id']))}" class="confirm ajax-get">删除</a>
+							<a href="{:U('dEdit', array('id'=>$val['id'],'bid'=>$val['bid']))}" class="authorize">修改</a>
+							<a href="{:U('dDel', array('id'=>$val['id'],'bid'=>$val['bid']))}" class="confirm ajax-get">删除</a>
 						</td>
                     </tr>
                 </volist>

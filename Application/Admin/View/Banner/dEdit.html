@@ -82,12 +82,23 @@
 			</div>
 			<div class="form-item cf">
 				<div class="controls">
+					<label class="item-label">链接<span class="check-tips"></span></label>
+					<input type="text" class="text input-mid" name="url" value="{$info['url']|default=''}">
+				</div>
+			</div>
+			<div class="form-item cf">
+				<div class="controls">
 					<label class="item-label">排序<span class="check-tips"></span></label>
 					<input type="text" class="text input-mid" name="sort" value="{$info['sort']|default=0}">
 				</div>
 			</div>
+
+
+
+
 		</div>
 		<div class="form-item cf">
+				<input type="hidden" name="bid" value="{$bid}">
 			<button class="btn btn-return ajax-post hidden" id="submit" type="submit" name="0" target-form="form-horizontal">确定保存</button>
 			<input type="hidden" name="id" value="{$info['id']}"/>
 		</div>

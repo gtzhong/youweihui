@@ -40,6 +40,7 @@ class BannerController extends AdminController {
             }
         } else {
             $this->assign('info', array('bid'=>$bid));
+            $this->assign('bid', $bid);
             $banner_info = D('Banner')->find($bid);
             $this->assign('banner_info', $banner_info);
             $this->meta_title = '新增广告';
@@ -58,6 +59,7 @@ class BannerController extends AdminController {
             }
         } else {
             $id = I('id',0,'intval');
+            $bid = I('bid',0,'intval');
             $info = $BannerData->find($id);
             if (!$info) {
                 $this->error('不存在！');
@@ -65,6 +67,7 @@ class BannerController extends AdminController {
             $banner_info = D('Banner')->find($info['bid']);
             $this->assign('banner_info', $banner_info);
             $this->assign('info', $info);
+            $this->assign('bid', $bid);
             $this->meta_title = '更新广告';
             $this->display();
         }

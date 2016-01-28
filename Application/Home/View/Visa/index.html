@@ -60,10 +60,13 @@
                  <li><a href="{:U('Visa/index',array('sub_id'=>$key))}">{$val}</a></li>
                </volist>
           </ul>
+      <form action="{:U('Visa/index/')}" method="get">
           <div class="yseou">
-              <input type="text" value="国家名称或地区名称"onfocus="if(this.value=='国家名称或地区名称'){this.value='';}"  onblur="if(this.value==''){this.value='国家名称或地区名称';}" class="y_put6 fl putnone">
-              <input type="button" class="y_put7 fr putnone">
+              <input type="text" name="keyword" value="国家名称或地区名称" onfocus="if(this.value=='国家名称或地区名称'){this.value='';}"
+              onblur="if(this.value==''){this.value='国家名称或地区名称';}" class="y_put6 fl putnone">
+              <input type="submit" value=" " class="y_put7 fr putnone">
           </div>
+      </from>
           <div class="ydiv4">
               <span>热门签证</span>
               <volist name=":get_visa_position('',1,4)" id="val">

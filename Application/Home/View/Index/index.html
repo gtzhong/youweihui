@@ -1,9 +1,16 @@
 <extend name="Base/common"/>
 <block name="body">
   <section class="banner">
-      <div id="js" class="js"> <a class="aa" href="#"><IMG class="imgb" src="__IMG__/banner1.jpg" width="1660" height="441"></a> <a class="aa" href="#"><IMG class="imgb" src="__IMG__/banner2.jpg" width="1660" height="441"></a> <a class="aa" href="#"><IMG class="imgb" src="__IMG__/banner1.jpg" width="1660" height="441"></a> <a class="aa" href="#"><IMG class="imgb" src="__IMG__/banner2.jpg" width="1660" height="441"></a> <a class="aa" href="#"><IMG class="imgb" src="__IMG__/banner1.jpg" width="1660" height="441"></a>
+      <div id="js" class="js">
+      <volist name=":get_banner(1,4)" id="val">
+              <a class="aa" target="_blank" href="{$val['url']}"><IMG class="imgb" src="{$val['image']}" width="1660" height="441"></a>
+      </volist>
           <div class="jsnr">
-              <div id="jsNav" class="jsNav fix"> <A class="trigger xz" href="javascript:void(0)"><img src="__IMG__/pic3.jpg" width="98" height="51"></A> <A class="trigger"  href="javascript:void(0)"><img src="__IMG__/pic4.jpg" width="98" height="51"></A> <A class="trigger"  href="javascript:void(0)"><img src="__IMG__/pic3.jpg" width="98" height="51"></A> <A class="trigger" href="javascript:void(0)"><img src="__IMG__/pic4.jpg" width="98" height="51"></A> <A class="trigger" href="javascript:void(0)"><img src="__IMG__/pic3.jpg" width="98" height="51"></A> </div>
+              <div id="jsNav" class="jsNav fix">
+              <volist name=":get_banner(1,4)" id="val">
+                  <A  <if condition='$key eq 0'>class="trigger xz"<else/>class="trigger"</if> href="javascript:void(0)"><img src="{$val['image']}" width="98" height="51"></A>
+              </volist>
+               </div>
           </div>
           <div class="ilx-qksch">
               <div class="ilx-qksch-bg">
@@ -294,10 +301,10 @@
                        <div class="title_nr1_left">
                          <div class="flexslider">
                                <ul class="slides">
-                                   <li style="background:url(__IMG__/pic9.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
-                                   <li style="background:url(__IMG__/pic9.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
-                                   <li style="background:url(__IMG__/pic9.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
-                                   <li style="background:url(__IMG__/pic9.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
+                                 <volist name=":get_banner(2,4)" id="val">
+                                   <li style="background:url({$val['image']}) 50% 0 no-repeat;"><a href="{$val['url']}"></a></li>
+                                 </volist>
+
                                </ul>
                            </div>
                            <script type="text/javascript">
@@ -331,10 +338,9 @@
                         <div class="title_nr1_left">
                         	<div class="flexslider">
                                 <ul class="slides">
-                                    <li style="background:url(__IMG__/pic9.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
-                                    <li style="background:url(__IMG__/pic9.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
-                                    <li style="background:url(__IMG__/pic9.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
-                                    <li style="background:url(__IMG__/pic9.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
+                                  <volist name=":get_banner(2,4)" id="val">
+                                    <li style="background:url({$val['image']}) 50% 0 no-repeat;"><a href="{$val['url']}"></a></li>
+                                  </volist>
                                 </ul>
                             </div>
                             <script type="text/javascript">
@@ -387,10 +393,9 @@
                      <div class="title_nr1_left">
                        <div class="flexslider">
                              <ul class="slides">
-                                 <li style="background:url(__IMG__/pic9.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
-                                 <li style="background:url(__IMG__/pic9.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
-                                 <li style="background:url(__IMG__/pic9.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
-                                 <li style="background:url(__IMG__/pic9.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
+                               <volist name=":get_banner(3,4)" id="val">
+                                 <li style="background:url({$val['image']}) 50% 0 no-repeat;"><a href="{$val['url']}"></a></li>
+                               </volist>
                              </ul>
                          </div>
                          <script type="text/javascript">
@@ -424,10 +429,9 @@
                       <div class="title_nr1_left">
                         <div class="flexslider">
                               <ul class="slides">
-                                  <li style="background:url(__IMG__/pic9.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
-                                  <li style="background:url(__IMG__/pic9.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
-                                  <li style="background:url(__IMG__/pic9.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
-                                  <li style="background:url(__IMG__/pic9.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
+                                <volist name=":get_banner(3,4)" id="val">
+                                  <li style="background:url({$val['image']}) 50% 0 no-repeat;"><a href="{$val['url']}"></a></li>
+                                </volist>
                               </ul>
                           </div>
                           <script type="text/javascript">
@@ -488,10 +492,9 @@
                      <div class="title_nr1_left">
                        <div class="flexslider">
                              <ul class="slides">
-                                 <li style="background:url(__IMG__/pic9.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
-                                 <li style="background:url(__IMG__/pic9.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
-                                 <li style="background:url(__IMG__/pic9.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
-                                 <li style="background:url(__IMG__/pic9.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
+                               <volist name=":get_banner(4,4)" id="val">
+                                 <li style="background:url({$val['image']}) 50% 0 no-repeat;"><a href="{$val['url']}"></a></li>
+                               </volist>
                              </ul>
                          </div>
                          <script type="text/javascript">
@@ -525,10 +528,9 @@
                       <div class="title_nr1_left">
                         <div class="flexslider">
                               <ul class="slides">
-                                  <li style="background:url(__IMG__/pic9.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
-                                  <li style="background:url(__IMG__/pic9.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
-                                  <li style="background:url(__IMG__/pic9.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
-                                  <li style="background:url(__IMG__/pic9.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
+                                <volist name=":get_banner(4,4)" id="val">
+                                  <li style="background:url({$val['image']}) 50% 0 no-repeat;"><a href="{$val['url']}"></a></li>
+                                </volist>
                               </ul>
                           </div>
                           <script type="text/javascript">

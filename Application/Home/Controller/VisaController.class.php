@@ -10,6 +10,8 @@ class VisaController extends HomeController {
             $catid = I('get.catid','');
             $zone = I('get.zone','');
             $sub_id = I('get.sub_id','');
+            $keyword = I('get.keyword','');
+          //  print_r($keyword);
             $pageNum = 6;
             $nowPage =  I('get.p',1);
             $firstRow = ($nowPage-1)*$pageNum;
@@ -18,6 +20,8 @@ class VisaController extends HomeController {
             $map['visa_catid'] = $catid;
             $map['zone'] = $zone;
             $map['sub_id'] = $sub_id;
+            $map['title'] = array('like','%'.$keyword.'%');
+          
             $map['_logic'] = 'OR';
             $where['_complex'] = $map;
             $where['status'] = 1;
