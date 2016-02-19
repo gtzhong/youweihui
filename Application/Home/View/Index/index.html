@@ -286,13 +286,13 @@
     	<div class="main2">
         	<div class="main2_top fix">
             	<span>全部尾单</span>
-                <a href="#" title="">更多 ></a>
+                <a href="{:U('Line/index',array('catid'=>1))}" title="">更多 ></a>
             </div>
         	<div class="main2_bottom fix">
             	<div class="title fix">
                   <div class="title1 xz">精选</div>
                       <volist name=":get_line_cate_lists(1,10)" id="val">
-                      <div class="title1">{$val['title']}</div>
+                              <div class="title1">{$val['title']}</div>
                       </volist>
                 </div>
                 <div class="title_nr">
@@ -302,7 +302,7 @@
                          <div class="flexslider">
                                <ul class="slides">
                                  <volist name=":get_banner(2,4)" id="val">
-                                   <li style="background:url({$val['image']}) 50% 0 no-repeat;"><a href="{$val['url']}"></a></li>
+                                         <li style="background:url({$val['image']}) 50% 0 no-repeat;"><a href="{$val['url']}"></a></li>
                                  </volist>
 
                                </ul>
@@ -338,8 +338,8 @@
                         <div class="title_nr1_left">
                         	<div class="flexslider">
                                 <ul class="slides">
-                                  <volist name=":get_banner(2,4)" id="val">
-                                    <li style="background:url({$val['image']}) 50% 0 no-repeat;"><a href="{$val['url']}"></a></li>
+                                  <volist name=":get_banner(2,4)" id="info">
+                                    <li style="background:url({$info['image']}) 50% 0 no-repeat;"><a href="{$info['url']}"></a></li>
                                   </volist>
                                 </ul>
                             </div>
@@ -376,7 +376,7 @@
         </div>
         	<div class="main2_top fix">
             	<span>出境特卖</span>
-                <a href="#" title="">更多 ></a>
+                <a href="{:U('Line/index',array('catid'=>6))}" title="">更多 ></a>
             </div>
 
 
@@ -429,8 +429,8 @@
                       <div class="title_nr1_left">
                         <div class="flexslider">
                               <ul class="slides">
-                                <volist name=":get_banner(3,4)" id="val">
-                                  <li style="background:url({$val['image']}) 50% 0 no-repeat;"><a href="{$val['url']}"></a></li>
+                                <volist name=":get_banner(3,4)" id="info">
+                                  <li style="background:url({$info['image']}) 50% 0 no-repeat;"><a href="{$info['url']}"></a></li>
                                 </volist>
                               </ul>
                           </div>
@@ -475,7 +475,7 @@
 
           <div class="main2_top fix">
             	<span>国内特卖</span>
-                <a href="#" title="">更多 ></a>
+                <a href="{:U('Line/index',array('catid'=>5))}" title="">更多 ></a>
             </div>
 
 
@@ -528,8 +528,8 @@
                       <div class="title_nr1_left">
                         <div class="flexslider">
                               <ul class="slides">
-                                <volist name=":get_banner(4,4)" id="val">
-                                  <li style="background:url({$val['image']}) 50% 0 no-repeat;"><a href="{$val['url']}"></a></li>
+                                <volist name=":get_banner(4,4)" id="info">
+                                  <li style="background:url({$info['image']}) 50% 0 no-repeat;"><a href="{$info['url']}"></a></li>
                                 </volist>
                               </ul>
                           </div>

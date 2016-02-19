@@ -215,12 +215,12 @@ function get_start_date($data){
 function get_line_position($catid='',$posid=1,$num=5,$order='line_id desc'){
     $LineView = D('LineView');
     $map = array(
-        'is_position' => 1,
+        'is_position' => $posid,
         'type_id' =>   $catid,
         'end_time' => array('gt', NOW_TIME),
         'is_default' => 1,
     );
-    $line_lists = $LineView->field('dest,starting')->where($map)->order("$order")->select();
+    $line_lists = $LineView->field('dest,starting')->where($map)->order($order)->limit(0,$num)->select();
     foreach ($line_lists as $key => $val) {
           $line_lists[$key]['img'] = get_cover(array_shift(explode(',', $val['images'])), 'path');
           $line_lists[$key]['url'] = U('Line/show', array('id'=>$val['line_id']));
