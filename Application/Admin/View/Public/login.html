@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>欢迎您登录OneThink</title>
+        <title>游尾会旅游管理系统</title>
         <link rel="stylesheet" type="text/css" href="__CSS__/login.css" media="all">
        	<link rel="stylesheet" type="text/css" href="__CSS__/{$Think.config.COLOR_STYLE}.css" media="all">
     </head>
@@ -13,7 +13,7 @@
             <div class="login-body">
                 <div class="login-main pr">
                     <form action="{:U('login')}" method="post" class="login-form">
-                        <h3 class="welcome"><i class="login-logo"></i>OneThink管理平台</h3>
+                        <h3 class="welcome">游尾会旅游管理系统</h3>
                         <div id="itemBox" class="item-box">
                             <div class="item">
                                 <i class="icon-login-user"></i>
@@ -99,7 +99,7 @@
             });
 
             //placeholder兼容性
-                //如果支持 
+                //如果支持
             function isPlaceholer(){
                 var input = document.createElement('input');
                 return "placeholder" in input;
@@ -112,17 +112,17 @@
                 $("#itemBox input").keydown(function(){
                     $(this).parents(".item").next(".placeholder_copy").css({
                         display:'none'
-                    })                    
+                    })
                 })
                 $("#itemBox input").blur(function(){
                     if($(this).val()==""){
                         $(this).parents(".item").next(".placeholder_copy").css({
                             display:'block'
-                        })                      
+                        })
                     }
                 })
-                
-                
+
+
             }
 		});
     </script>

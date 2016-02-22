@@ -28,6 +28,7 @@
         <tr>
 		<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
 		<th class="">UID</th>
+		<th class="">手机</th>
 		<th class="">昵称</th>
 		<th class="">积分</th>
 		<th class="">登录次数</th>
@@ -43,6 +44,7 @@
 		<tr>
             <td><input class="ids" type="checkbox" name="id[]" value="{$vo.uid}" /></td>
 			<td>{$vo.uid} </td>
+			<td>{:get_userinfo($vo['uid'], 3)} </td>
 			<td>{$vo.nickname}</td>
 			<td>{$vo.score}</td>
 			<td>{$vo.login}</td>

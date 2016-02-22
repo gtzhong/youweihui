@@ -15,8 +15,14 @@ use User\Api\UserApi;
  */
 class IndexController extends HomeController {
       public function index(){
-          
+
           $this->display();
       }
 
+      public function send(){
+
+
+
+          print_r(send_sms('15044858848', array('content'=>'测试信息')));
+      }
 }
