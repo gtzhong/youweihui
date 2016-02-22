@@ -216,7 +216,7 @@ function get_line_position($catid='',$posid=1,$num=5,$order='line_id desc'){
     $LineView = D('LineView');
     $map = array(
         'is_position' => $posid,
-        'type_id' =>   $catid,
+        'type_id' =>   array('in',$catid),
         'end_time' => array('gt', NOW_TIME),
         'is_default' => 1,
     );
@@ -224,6 +224,7 @@ function get_line_position($catid='',$posid=1,$num=5,$order='line_id desc'){
     foreach ($line_lists as $key => $val) {
           $line_lists[$key]['img'] = get_cover(array_shift(explode(',', $val['images'])), 'path');
           $line_lists[$key]['url'] = U('Line/show', array('id'=>$val['line_id']));
+		  $line_lists[$key]['save'] = $line_lists[$key]['price']-$line_lists[$key]['best_price'];
     }
     return $line_lists;
 }
