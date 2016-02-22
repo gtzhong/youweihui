@@ -233,66 +233,33 @@
                 <a href="#" title="">更多 ></a>
             </div>
         	<div class="main1_bottom fix">
+			<volist name=":get_line_position('1,5,6',2,4)" id="val">
             	<dl>
-                	<dt><a href="#" title="">
-    	               	<img src="__IMG__/pic7.jpg" width="268" height="197">
-                        <em>立省 ￥2300</em>
-                        <p>峨眉仙境 4/7日</p>
-                        <span>"歌诗达大西洋号" 济州岛4晚5日多房 型可供选择</span></a>
+                	<dt><a href="{$val['url']}" title="">
+    	               	<img src="{$val['img']}" width="268" height="197">
+                        <em>立省 ￥{$val['save']}</em>
+                        <p>{$val['title']}</p>
+                        <span>{$val['sub_title']}</span></a>
                     </dt>
                     <dd class="fix">
-                    	<p><em>￥10999</em>￥8699 起</p>
-                        <span><a href="#" title="">抢购</a></span>
+                    	<p><em>￥{$val['price']}</em>￥{$val['best_price']} 起</p>
+                        <span><a href="{$val['url']}" title="">抢购</a></span>
                     </dd>
                 </dl>
-            	<dl>
-                	<dt><a href="#" title="">
-    	               	<img src="__IMG__/pic7.jpg" width="268" height="197">
-                        <em>立省 ￥2300</em>
-                        <p>峨眉仙境 4/7日</p>
-                        <span>"歌诗达大西洋号" 济州岛4晚5日多房 型可供选择</span></a>
-                    </dt>
-                    <dd class="fix">
-                    	<p><em>￥10999</em>￥8699 起</p>
-                        <span><a href="#" title="">抢购</a></span>
-                    </dd>
-                </dl>
-            	<dl>
-                	<dt><a href="#" title="">
-    	               	<img src="__IMG__/pic7.jpg" width="268" height="197">
-                        <em>立省 ￥2300</em>
-                        <p>峨眉仙境 4/7日</p>
-                        <span>"歌诗达大西洋号" 济州岛4晚5日多房 型可供选择</span></a>
-                    </dt>
-                    <dd class="fix">
-                    	<p><em>￥10999</em>￥8699 起</p>
-                        <span><a href="#" title="">抢购</a></span>
-                    </dd>
-                </dl>
-            	<dl>
-                	<dt><a href="#" title="">
-    	               	<img src="__IMG__/pic7.jpg" width="268" height="197">
-                        <em>立省 ￥2300</em>
-                        <p>峨眉仙境 4/7日</p>
-                        <span>"歌诗达大西洋号" 济州岛4晚5日多房 型可供选择</span></a>
-                    </dt>
-                    <dd class="fix">
-                    	<p><em>￥10999</em>￥8699 起</p>
-                        <span><a href="#" title="">抢购</a></span>
-                    </dd>
-                </dl>
+			</volist>	
+            	
             </div>
         </div>
     	<div class="main2">
         	<div class="main2_top fix">
             	<span>全部尾单</span>
-                <a href="#" title="">更多 ></a>
+                <a href="{:U('Line/index',array('catid'=>1))}" title="">更多 ></a>
             </div>
         	<div class="main2_bottom fix">
             	<div class="title fix">
                   <div class="title1 xz">精选</div>
                       <volist name=":get_line_cate_lists(1,10)" id="val">
-                      <div class="title1">{$val['title']}</div>
+                              <div class="title1">{$val['title']}</div>
                       </volist>
                 </div>
                 <div class="title_nr">
@@ -302,7 +269,7 @@
                          <div class="flexslider">
                                <ul class="slides">
                                  <volist name=":get_banner(2,4)" id="val">
-                                   <li style="background:url({$val['image']}) 50% 0 no-repeat;"><a href="{$val['url']}"></a></li>
+                                         <li style="background:url({$val['image']}) 50% 0 no-repeat;"><a href="{$val['url']}"></a></li>
                                  </volist>
 
                                </ul>
@@ -338,8 +305,8 @@
                         <div class="title_nr1_left">
                         	<div class="flexslider">
                                 <ul class="slides">
-                                  <volist name=":get_banner(2,4)" id="val">
-                                    <li style="background:url({$val['image']}) 50% 0 no-repeat;"><a href="{$val['url']}"></a></li>
+                                  <volist name=":get_banner(2,4)" id="info">
+                                    <li style="background:url({$info['image']}) 50% 0 no-repeat;"><a href="{$info['url']}"></a></li>
                                   </volist>
                                 </ul>
                             </div>
@@ -376,7 +343,7 @@
         </div>
         	<div class="main2_top fix">
             	<span>出境特卖</span>
-                <a href="#" title="">更多 ></a>
+                <a href="{:U('Line/index',array('catid'=>6))}" title="">更多 ></a>
             </div>
 
 
@@ -429,8 +396,8 @@
                       <div class="title_nr1_left">
                         <div class="flexslider">
                               <ul class="slides">
-                                <volist name=":get_banner(3,4)" id="val">
-                                  <li style="background:url({$val['image']}) 50% 0 no-repeat;"><a href="{$val['url']}"></a></li>
+                                <volist name=":get_banner(3,4)" id="info">
+                                  <li style="background:url({$info['image']}) 50% 0 no-repeat;"><a href="{$info['url']}"></a></li>
                                 </volist>
                               </ul>
                           </div>
@@ -475,7 +442,7 @@
 
           <div class="main2_top fix">
             	<span>国内特卖</span>
-                <a href="#" title="">更多 ></a>
+                <a href="{:U('Line/index',array('catid'=>5))}" title="">更多 ></a>
             </div>
 
 
@@ -528,8 +495,8 @@
                       <div class="title_nr1_left">
                         <div class="flexslider">
                               <ul class="slides">
-                                <volist name=":get_banner(4,4)" id="val">
-                                  <li style="background:url({$val['image']}) 50% 0 no-repeat;"><a href="{$val['url']}"></a></li>
+                                <volist name=":get_banner(4,4)" id="info">
+                                  <li style="background:url({$info['image']}) 50% 0 no-repeat;"><a href="{$info['url']}"></a></li>
                                 </volist>
                               </ul>
                           </div>

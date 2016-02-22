@@ -191,13 +191,17 @@
 			</div>
 			<div class="form-item cf">
 				<div class="controls">
-					<label class="item-label">是否推荐<span class="check-tips"></span></label>
+					<label class="item-label">是否推荐<span class="check-tips"></span></label>	
+                     <label class="radio">
+						<input type="radio" value="2" name="is_position" <eq name="data['is_position']" value="2">checked="checked"</eq>>特价
+					 </label>					
 					<label class="radio">
 						<input type="radio" value="1" name="is_position" <eq name="data['is_position']" value="1">checked="checked"</eq>>推荐
 					</label>
 					<label class="radio">
 						<input type="radio" value="0" name="is_position" <eq name="data['is_position']" value="0">checked="checked"</eq>>不推荐
 					</label>
+					
 				</div>
 			</div>
 		</div>
