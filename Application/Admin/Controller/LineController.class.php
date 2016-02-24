@@ -149,7 +149,7 @@ class LineController extends AdminController {
         } else  {
             $this->getMenu();
 
-          
+
             // 操作步骤
             $setp = array(
                 1 => array('title'=>'线路描述', 'url'=>U('edit', array('site_id'=>$this->site_id,'line_id'=>$line_id)), 'current'=>1),

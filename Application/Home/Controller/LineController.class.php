@@ -13,26 +13,114 @@ class LineController extends HomeController {
         $pageNum = 10;
         $nowPage =  I('get.p',1);
         $firstRow = ($nowPage-1)*$pageNum;
-
+        $souso = array('catid'=>$catid);
         $map = array(
-            'type_id' =>   $catid,
+            'type_id' => $catid,
             'end_time' => array('gt', NOW_TIME),
             'is_default' => 1,
         );
-
-
-        $list = $LineView->field('dest,starting')->where($map)->order('end_time desc, line_id desc')->limit($firstRow,$pageNum)->group('line_id')->select();
+        // 搜索关键词
+        $keyword = I('keyword', '', 'trim');
+        if (!empty($keyword) && $keyword != '请输入主题或关键词') {
+            $map['title'] = array('like', '%'. $keyword .'%');
+            $souso['keyword'] = $keyword;
+        }
+        // 出发城市
+        $start = I('start', '', 'trim');
+        if (!empty($start)) {
+            if (strpos($start, '-') === false) {
+                $map['start'] = array('like', '%'. $start .'%');
+            } else {
+                $keywords = explode('-', $start);
+                foreach ($keywords as $key => $value) {
+                    $keywords[$key] = '%'. $value .'%';
+                }
+                $map['start'] = array('like', $keywords,'OR');
+            }
+            $souso['start'] = $start;
+        }
+        // 目的地
+        $dest = I('dest');
+        if (!empty($dest)) {
+            $map['type_id'] = $dest;
+            $souso['dest'] = $dest;
+        }
+        // 参团性质
+        $ct_type = I('ct_type', 0, 'intval');
+        if (!empty($ct_type)) {
+            $map['ct_type'] = $ct_type;
+            $souso['ct_type'] = $ct_type;
+        }
+        // 线路类型
+        $l_type = I('l_type', 0, 'intval');
+        if (!empty($l_type)) {
+            $map['l_type'] = $l_type;
+            $souso['l_type'] = $l_type;
+        }
+        // 旅行天数
+        $daynum = I('daynum', 0, 'intval');
+        if (!empty($daynum)) {
+            $map['daynum'] = array('elt', $daynum);
+            $souso['daynum'] = $daynum;
+        }
+        // 价格区间
+        $price = I('price');
+        if (!empty($price)) {
+            list($p1, $p2) = explode('-', $price);
+            if ($p1 == 0 && $p2 > 0) {
+                $map['price'] = array('elt', $p2);
+            } elseif ($p1 > 0 && $p2 == 0) {
+                $map['price'] = array('egt', $p1);
+            } elseif ($p1 > 0 && $p2 > 0) {
+                $map['price'] = array(array('egt', $p1), array('elt', $p2));
+            }
+            $souso['price'] = $price;
+        }
+        // sort
+        $sort = I('sort');
+        switch ($sort) {
+            case 'base_order':
+                $order = 'base_order desc, end_time desc, line_id desc';
+                break;
+            case 'price':
+                $order = 'price desc, end_time desc, line_id desc';
+                break;
+            default:
+                $order = 'end_time desc, line_id desc';
+                break;
+        }
+        $souso['sort'] = $sort;
+        // $map['cname'] = '北京';
+        $list = $LineView->field('')->where($map)->order($order)->limit($firstRow,$pageNum)->group('line_id')->select();
+        // echo $LineView->_sql();
         foreach ($list as $key => $val) {
              $list[$key]['start_date'] = get_start_date($val['date_price_data']);
              $list[$key]['img'] = get_cover(array_shift(explode(',', $val['images'])), 'path');
              $list[$key]['url'] = U('Line/show', array('id'=>$val['line_id']));
         }
 
-
+        $categorys = array();
+        foreach ($this->line_cate as $value) {
+            if ($value['id'] == $catid) {
+                $categorys = $value;
+                break;
+            } else {
+                foreach ($value['_'] as $val) {
+                    if ($val['id'] == $catid) {
+                        $categorys = $val;
+                        break;
+                    } else {
+                        continue;
+                    }
+                }
+            }
+        }
+        $this->assign('categorys', $categorys);
 
         $count = $LineView->where($map)->count();
         $_page = article_pages($count,$pageNum);
         $this->assign('list', $list);
+        $this->assign('souso', $souso);
         $this->assign('_page', $_page);
         $this->display();
     }

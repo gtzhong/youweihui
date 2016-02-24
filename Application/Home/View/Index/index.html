@@ -16,128 +16,77 @@
               <div class="ilx-qksch-bg">
                   <div class="ilx-schtx sch1">
                       <h1 class="ico-pl">出发城市</h1>
-                      <input class="ilx-schinput" type="text" data-utype="city" data-can="1" value="北京">
+                      <input class="ilx-schinput" type="text" data-utype="start" data-can="" value="全部">
                       <div class="ilx-schlist" style="display: none;">
                           <div class="ilx-schlist-wrap clearfix">
                               <div class="ilx-clsprt"></div>
                               <ul>
-                                  <li class="ilx-sch-li" data-type="city" data-city="">全部</li>
-                                  <li class="ilx-sch-li" data-type="city" data-city="1">北京/天津</li>
-                                  <li class="ilx-sch-li" data-type="city" data-city="2">上海/杭州</li>
-                                  <li class="ilx-sch-li" data-type="city" data-city="3">广东/港澳</li>
-                                  <li class="ilx-sch-li" data-type="city" data-city="5">重庆/成都</li>
-                                  <li class="ilx-sch-li" data-type="city" data-city="4">武汉/长沙</li>
-                                  <li class="ilx-sch-li" data-type="city" data-city="6">国内其他</li>
+                                  <volist name=":C('START_LIST')" id="val">
+                                      <li class="ilx-sch-li" data-type="start" data-start="{$val}">{$val}</li>
+                                  </volist>
+
                               </ul>
                           </div>
                       </div>
                   </div>
+                  <input class="ilx-schinput" type="hidden" id="catid" data-utype="catid" data-can="1">
                   <div class="ilx-schtx sch2">
                       <h1 class="ico-am">目的地</h1>
-                      <input class="ilx-schinput" type="text" data-utype="place" data-can="8" value="上海">
+                      <input class="ilx-schinput" type="text" data-utype="dest" data-can="" value="全部">
                       <div class="ilx-schlist pl-ctas" style="display: none;">
                           <div class="ilx-schlist-wrap clearfix">
                               <div class="ilx-clsprt"></div>
-                              <ul class="pl-ctpl">
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="414">全部</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="1">瑞士</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="91">希腊</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="131">法国</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="142">意大利</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="151">德国</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="159">荷兰</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="165">比利时</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="176">土耳其</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="195">俄罗斯</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="201">英国</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="211">西班牙</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="217">葡萄牙</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="339">奥地利</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="340">梵蒂冈</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="341">芬兰</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="342">丹麦</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="343">瑞典</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="344">挪威</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="380">匈牙利</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="381">捷克</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="382">斯洛伐克</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="383">拉普兰德</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="443">卢森堡</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="520">爱尔兰</li>
-                              </ul>
-                              <ul class="pl-ctpl">
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="411">全部</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="41">塞舌尔</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="46">毛里求斯</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="171">埃及</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="183">南非</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="361">肯尼亚</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="379">坦桑尼亚</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="472">牙买加</li>
-                              </ul>
-                              <ul class="pl-ctpl">
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="500">全部</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="79">澳大利亚</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="85">新西兰</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="364">帕劳</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="374">大溪地</li>
-                              </ul>
-                              <ul class="pl-ctpl">
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="498">全部</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="106">加拿大</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="493">巴哈马</li>
-                              </ul>
-                              <ul class="pl-ctpl">
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="499">全部</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="405">巴西</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="408">阿根廷</li>
-                                  <li class="ilx-sch-li ilx-slas" data-type="place" data-place="474">墨西哥</li>
-                              </ul>
+                            <volist name="line_cate" id="value">
+                                <ul class="pl-ctpl">
+                                    <li class="ilx-sch-li ilx-slas" data-type="catid" data-catid="{$value['catid']}">{$value['title']}</li>
+                                    <volist name="value['_']" id="val">
+                                        <li class="ilx-sch-li ilx-slas" data-type="dest" data-dest="{$val['id']}" data-destcatid="{$value['id']}">{$val['title']}</li>
+                                    </volist>
+                                </ul>
+                            </volist>
+
+
                           </div>
                       </div>
                   </div>
                   <div class="ilx-schtx sch3">
                       <h1 class="ico-st">线路类型</h1>
-                      <input class="ilx-schinput" type="text" data-utype="ptype" data-can="1" value="全部尾单">
+                      <input class="ilx-schinput" type="text" data-utype="l_type" data-can="" value="全部">
                       <div class="ilx-schlist" style="display: none;">
                           <div class="ilx-schlist-wrap clearfix">
                               <div class="ilx-clsprt"></div>
                               <ul>
-                                  <li class="ilx-sch-li" data-type="ptype" data-ptype="1">全部尾单</li>
-                                  <li class="ilx-sch-li" data-type="ptype" data-ptype="3">全部尾单</li>
-                                  <li class="ilx-sch-li" data-type="ptype" data-ptype="4">全部尾单</li>
+                                  <volist name=":C('LINE_TYPE')" id="val">
+                                      <li class="ilx-sch-li" data-type="l_type" data-l_type="{$key}">{$val}</li>
+                                  </volist>
                               </ul>
                           </div>
                       </div>
                   </div>
                   <div class="ilx-schtx sch4">
                       <h1 class="ico-xz">参团性质</h1>
-                      <input class="ilx-schinput" type="text" data-utype="city" data-can="1" value="跟团游">
+                      <input class="ilx-schinput" type="text" data-utype="ct_type" data-can="" value="全部">
                       <div class="ilx-schlist" style="display: none;">
                           <div class="ilx-schlist-wrap clearfix">
                               <div class="ilx-clsprt"></div>
                               <ul>
-                                  <li class="ilx-sch-li" data-type="city" data-city="">全部</li>
-                                  <li class="ilx-sch-li" data-type="city" data-city="1">跟团游</li>
-                                  <li class="ilx-sch-li" data-type="city" data-city="2">跟团游</li>
-                                  <li class="ilx-sch-li" data-type="city" data-city="3">跟团游</li>
-                                  <li class="ilx-sch-li" data-type="city" data-city="5">跟团游</li>
-                                  <li class="ilx-sch-li" data-type="city" data-city="4">跟团游</li>
-                                  <li class="ilx-sch-li" data-type="city" data-city="6">跟团游</li>
+                                  <volist name=":C('CAN_TUAN')" id="val">
+                                      <li class="ilx-sch-li" data-type="ct_type" data-ct_type="{$key}">{$val}</li>
+                                  </volist>
                               </ul>
                           </div>
                       </div>
                   </div>
                   <div class="ilx-schtx sch5">
-                      <h1 class="ico-da">旅行日期</h1>
-                      <input class="ilx-schinput" type="text" data-utype="tdate" data-can="" value="11月">
+                      <h1 class="ico-da">旅行天数</h1>
+                      <input class="ilx-schinput" type="text" data-utype="daynum" data-can="" value="全部">
                       <div class="ilx-schlist" style="display: none;">
                           <div class="ilx-schlist-wrap clearfix">
                               <div class="ilx-clsprt"></div>
                               <ul>
-                                  <li class="ilx-sch-li" data-type="tdate" data-tdate="b1">圣诞</li>
-                                  <li class="ilx-sch-li" data-type="tdate" data-tdate="b2">元旦</li>
-                                  <li class="ilx-sch-li" data-type="tdate" data-tdate="b3">春节</li>
+                                  <volist name=":C('DAY_NUM')" id="val">
+                                      <li class="ilx-sch-li" data-type="daynum" data-daynum="{$key}">{$val}</li>
+                                  </volist>
                               </ul>
                           </div>
                       </div>
@@ -230,7 +179,7 @@
     	<div class="main1">
         	<div class="main1_top fix">
             	<span><img src="__IMG__/bg25.png" width="29" height="28" alt=""> 特价旅游</span>
-                <a href="#" title="">更多 ></a>
+                <a href="{:U('Line/index')}" title="">更多 ></a>
             </div>
         	<div class="main1_bottom fix">
 			<volist name=":get_line_position('1,5,6',2,4)" id="val">
@@ -246,8 +195,8 @@
                         <span><a href="{$val['url']}" title="">抢购</a></span>
                     </dd>
                 </dl>
-			</volist>	
-            	
+			</volist>
+
             </div>
         </div>
     	<div class="main2">
@@ -536,7 +485,7 @@
   <div class="main3">
       <div class="main3_top fix">
           <span>签证旅游</span>
-            <a href="#" title="">更多 ></a>
+            <a href="{:U('Visa/index')}" title="">更多 ></a>
         </div>
       <div class="main3_bottom fix">
         <volist name=":get_visa_position('',1,6)" id="val">
@@ -563,7 +512,7 @@
       <div class="main4_left">
             <div class="main4_left_top fix">
                 <span>旅游资讯</span>
-                <a href="#" title="">更多 ></a>
+                <a href="{:U('Article/index')}" title="">更多 ></a>
             </div>
             <div class="main4_left_bottom fix">
                 <div class="main4_left_bottom_left">
@@ -600,7 +549,7 @@
       <div class="main4_right">
           <div class="main4_right_top fix">
                 <span>最近预定</span>
-                <a href="#" title="">更多 ></a>
+                <a href="javascript:;" title="">更多 ></a>
             </div>
             <div class="main4_right_bottom fix">
               <div class="scrollleft">

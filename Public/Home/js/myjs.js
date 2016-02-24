@@ -104,7 +104,7 @@ $(function(){
         $('.y_zi1').show();
         $(this).siblings().css('width','250px');
   })
-  
+
   //签证页面tip滚动
 
 
@@ -135,11 +135,16 @@ $(function(){
 
 
 
-  $('.yy1 a').click(function(){
-	  $('.ydiv6').find('.yydiv').eq($(this).index()).show().siblings().hide()
+  $('.show').click(function(){
+	  $('.ydiv6').show().find('.yydiv').eq($(this).index()).show().siblings().hide()
   })
 
-
+	$(".ydiv6").each(function(){
+		var than = $(this)
+		console.log(than)
+		than.find(".act").parents(".yydiv").show()
+		than.show()
+	})
 
 
 })

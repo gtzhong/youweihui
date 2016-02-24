@@ -26,29 +26,29 @@ function send_sms($mobile, $data, $tid = 'default') {
     $data['kefu'] = '4000000000';
     // $content = str_replace('%s', $data, $temp[$tid]);
     $content = strtr($temp[$tid], $data);
-    // $para = array(
-    //     'userid' => '123456',
-    //     'account' => 'ywhui',
-    //     'password' => '游尾会601',
-    //     'mobile' => $mobile,
-    //     'content' => $content . '【游尾会】',
-    //     'sendTime' => '',
-    //     'action' => 'send',
-    //     'extno' => '',
-    // );
-    // $curl = curl_init('http://115.29.101.9:9001/sms.aspx');
-	// curl_setopt($curl, CURLOPT_HEADER, 0 ); // 过滤HTTP头
-	// curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);// 显示输出结果
-	// curl_setopt($curl, CURLOPT_POST, true); // post传输数据
-	// curl_setopt($curl, CURLOPT_POSTFIELDS, $para);// post传输数据
-	// $responseText = curl_exec($curl);
-	// //var_dump( curl_error($curl) );//如果执行curl过程中出现异常，可打开此开关，以便查看异常内容
-	// curl_close($curl);
-    // $responseArray = json_decode(json_encode((array) simplexml_load_string($responseText)), true);
-    $responseArray = array(
-        'message' => '成功',
-        'returnstatus' => 'Success',
+    $para = array(
+        'userid' => '2901',
+        'account' => 'ywhui',
+        'password' => 'ywh1601',
+        'mobile' => $mobile,
+        'content' => $content . '【游尾会】',
+        'sendTime' => '',
+        'action' => 'send',
+        'extno' => '',
     );
+    $curl = curl_init('http://115.29.101.9:9001/sms.aspx');
+	curl_setopt($curl, CURLOPT_HEADER, 0 ); // 过滤HTTP头
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);// 显示输出结果
+	curl_setopt($curl, CURLOPT_POST, true); // post传输数据
+	curl_setopt($curl, CURLOPT_POSTFIELDS, $para);// post传输数据
+	$responseText = curl_exec($curl);
+	//var_dump( curl_error($curl) );//如果执行curl过程中出现异常，可打开此开关，以便查看异常内容
+	curl_close($curl);
+    $responseArray = json_decode(json_encode((array) simplexml_load_string($responseText)), true);
+    // $responseArray = array(
+    //     'message' => '成功',
+    //     'returnstatus' => 'Success',
+    // );
     $data = array(
         'mobile' => $mobile,
         'content' => $content,
@@ -216,11 +216,11 @@ function get_line_position($catid='',$posid=1,$num=5,$order='line_id desc'){
     $LineView = D('LineView');
     $map = array(
         'is_position' => $posid,
-        'type_id' =>   array('in',$catid),
+        'type_id' =>   array('in', $catid . ''),
         'end_time' => array('gt', NOW_TIME),
         'is_default' => 1,
     );
-    $line_lists = $LineView->field('dest,starting')->where($map)->order($order)->limit(0,$num)->select();
+    $line_lists = $LineView->field('dest,start')->where($map)->order($order)->limit(0,$num)->select();
     foreach ($line_lists as $key => $val) {
           $line_lists[$key]['img'] = get_cover(array_shift(explode(',', $val['images'])), 'path');
           $line_lists[$key]['url'] = U('Line/show', array('id'=>$val['line_id']));
@@ -228,6 +228,7 @@ function get_line_position($catid='',$posid=1,$num=5,$order='line_id desc'){
     }
     return $line_lists;
 }
+
 /*
    获取线路栏目名称
 */

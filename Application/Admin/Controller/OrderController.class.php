@@ -84,15 +84,15 @@ class OrderController extends AdminController {
 			$order_lists[$key]['pay_status_text'] = pay_status_text($value['pay_status']);
             switch ($value['order_type']) {
                 case 'line':
-                    $line = M('Line')->field('title,images,starting')->where(array('line_id'=>$value['product_id']))->find();
+                    $line = M('Line')->field('title,images,start')->where(array('line_id'=>$value['product_id']))->find();
                     if ($line) {
                         $order_lists[$key]['title'] = $line['title'];
                         $order_lists[$key]['image'] = get_cover(array_shift(explode(',', $line['images'])), 'path');
-                        $order_lists[$key]['starting'] = $line['starting'];
+                        $order_lists[$key]['start'] = $line['start'];
                     } else {
                         $order_lists[$key]['title'] = '不存在';
                         $order_lists[$key]['image'] = '';
-                        $order_lists[$key]['starting'] = '';
+                        $order_lists[$key]['start'] = '';
                     }
                     break;
 
@@ -120,15 +120,15 @@ class OrderController extends AdminController {
         $order_info['pay_status_text'] = pay_status_text($order_info['pay_status']);
         switch ($order_info['order_type']) {
             case 'line':
-                $line = M('Line')->field('title,images,starting')->where(array('line_id'=>$order_info['product_id']))->find();
+                $line = M('Line')->field('title,images,start')->where(array('line_id'=>$order_info['product_id']))->find();
                 if ($line) {
                     $order_info['title'] = $line['title'];
                     $order_info['image'] = get_cover(array_shift(explode(',', $line['images'])), 'path');
-                    $order_info['starting'] = $line['starting'];
+                    $order_info['start'] = $line['start'];
                 } else {
                     $order_info['title'] = '不存在';
                     $order_info['image'] = '';
-                    $order_info['starting'] = '';
+                    $order_info['start'] = '';
                 }
                 break;
 

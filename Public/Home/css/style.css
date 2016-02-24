@@ -759,16 +759,22 @@
 .yk_01{ line-height:53px; border-left:1px solid #e4e4e4; border-right:1px solid #e4e4e4; border-bottom:1px dashed #dfdfdf; position:relative;}
 .yk_01 span{ float:left; width:106px; text-align:right; font-size:12px; color:#4d4d4d; font-weight:bold;}
 .yy1{ float:left;}
-.yk_01 a{ font-size:12px; color:#414141; margin-right:34px;}
-.yk_01 a.ya3{ display:inline-block; width:39px; height:23px; line-height:23px; text-align:center; background:#0091ed; color:#fff; font-weight:bold; margin-left:10px;}
-
+.yk_01 a{ font-size:12px; color:#414141; margin-right:25px;}
+.yk_01 a.ya3{ display:inline-block; padding: 0 10px; height:23px; line-height:23px; text-align:center; background:#DADADA; color:#fff; font-weight:bold; margin-left:10px;}
+.yk_01 a.act{display:inline-block; padding: 0 10px; height:23px; line-height:23px; text-align:center; background:#0091ed; color:#fff; font-weight:bold; }
+.yk_01 a.act2 {
+    background-color: #0091ED;
+    width: auto;
+    padding: 0 20px;
+    color: #fff;
+    font-weight: bold;
+}
 .ybbb{ border-bottom:none;}
 
 .yy2>a.ya4{ position:absolute; right:0px; top:0px; padding-right:18px; background:url(../images/y_xias.png) 30px center no-repeat;}
 .yy2>a.ya5{ position:absolute; right:0px; top:0px; padding-right:18px; background:url(../images/y_shangs.png) 30px center no-repeat; display:none;}
 
-.ydiv6{ margin-left: 120px; line-height: normal; line-height: 32px; display: none; padding: 6px 0px;}
-.ydiv6 a{ float:left; width:78px;}
+.ydiv6{ margin-left: 120px; line-height: normal; line-height: 23px; display: none; padding: 6px 0px;}
 
 /*--tian-*/
 .yydiv{ display:none;}

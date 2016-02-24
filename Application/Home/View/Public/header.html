@@ -4,36 +4,23 @@
         <div class="dingbu_nr_left">欢迎来到游尾会，一起旅游，一起嗨！</div>
         <div class="dingbu_nr_center">
             <ul class="ul fix">
-                <li><a href="javascript:void(0);" title="">全部尾单<img src="__IMG__/bg18.png" width="7" height="4" alt=""></a>
+                <li>
+                    <a href="javascript:void(0);" title="">全部尾单<img src="__IMG__/bg18.png" width="7" height="4" alt=""></a>
                     <div class="xl fix">
                         <div class="xl_left">
                             <ul>
                                 <li class="fix">
-                                    <p>
-                                        <img src="__IMG__/bg20.png" width="31" height="24" alt=""> 度假产品</p>
-                                    <span class="fix">
-                                        <a href="{:U('Line/index',array('catid'=>1))}" title="">
-                                            <em>全部尾单</em>
-                                        </a>
-                                        <volist name=":get_line_cate_lists(1,10)" id="val">
-                                           <a href="{$val['url']}" title="">{$val['title']}</a>
-                                        </volist>
-                                        <br />
-                                        <br />
-                                        <a href="{:U('Line/index',array('catid'=>6))}" title="">
-                                            <em>出境特卖</em>
-                                        </a>
-                                        <volist name=":get_line_cate_lists(6,10)" id="val">
-                                           <a href="{$val['url']}" title="">{$val['title']}</a>
-                                        </volist>
-                                        <br />
-                                        <br />
-                                        <a href="{:U('Line/index',array('catid'=>5))}" title="">
-                                            <em>国内特卖</em>
-                                        </a>
-                                        <volist name=":get_line_cate_lists(5,10)" id="val">
-                                           <a href="{$val['url']}" title="">{$val['title']}</a>
-                                        </volist>
+                                    <p><img src="__IMG__/bg20.png" width="31" height="24" alt=""> 度假产品</p>
+                                        <span class="fix">
+                                            <volist name="line_cate" id="value">
+                                                <a href="{:U('Line/index',array('catid'=>$value['id']))}" title="{$value['title']}">
+                                                    <em>{$value['title']}</em>
+                                                </a>
+                                                <volist name="value['_']" id="val">
+                                                   <a href="{:U('Line/index',array('catid'=>$value['id'], 'dest'=>$val['id']))}" title="">{$val['title']}</a>
+                                                </volist>
+                                                <br /><br />
+                                            </volist>
                                        </span>
                                 </li>
                                 <li class="fix">
@@ -91,7 +78,7 @@
                         </div>
                     </div>
                 </li>
-                <li><a href="{:U('User/index')}" title="">加入收藏</a></li>
+                <li><a id="collection" href="javascript:void(0);" title="">加入收藏</a></li>
                 <li><a href="{:U('User/index')}" title="">订单查询</a></li>
             </ul>
         </div>
@@ -129,9 +116,15 @@
     </div>
     <div class="search">
         <div class="search_nr fix">
-            <input name="q" class="seach_in1 search-keyword wbk" type="text" id="search" value="请输入目的地、主题或关键词" onfocus="if(this.value=='请输入目的地、主题或关键词'){this.value='';}" onblur="if(this.value==''){this.value='请输入目的地、主题或关键词';}" />
-            <span class="fix"> <a href="#" title="">樱花季</a> <a href="#" title="">父母游</a> <a href="#" title="">欧洲</a> </span>
-            <input type="submit" name="button" id="button" value="" class="btn">
+            <form action="{:U('Line/index')}" method="get">
+            <input name="keyword" class="seach_in1 search-keyword wbk" type="text" id="search" value="请输入主题或关键词" onfocus="if(this.value=='请输入主题或关键词'){this.value='';}" onblur="if(this.value==''){this.value='请输入主题或关键词';}" />
+            <span class="fix">
+            <volist name=":C('SOUSO_LIST')" id="val">
+                <a href="{:U('Line/index', array('keyword'=>$val))}" title="{$val}">{$val}</a>
+            </volist>
+            </span>
+            <input type="submit" value="" class="btn">
+            </form>
         </div>
     </div>
     <div class="tel fix">
@@ -150,27 +143,16 @@
         <div class="nav_nr auto fix">
             <ul class="ul fix">
                 <li><a href="/" title="">首页</a></li>
-                <li><a href="{:get_line_cate(1,'url')}" title="">{:get_line_cate(1,'catname')}<img src="__IMG__/bg3.png" width="8" height="5" alt=""></a>
-                    <div class="xl">
-                        <volist name=":get_line_cate_lists(1,10)" id="val">
-                            <a href="{$val['url']}" title="{$val['title']}">{$val['title']}</a>
-                        </volist>
-                     </div>
-                </li>
-                <li><a href="{:get_line_cate(6,'url')}">{:get_line_cate(6,'catname')}<img src="__IMG__/bg3.png" width="8" height="5" alt=""></a>
-                    <div class="xl">
-                          <volist name=":get_line_cate_lists(6,10)" id="val">
-                              <a href="{$val['url']}" title="{$val['title']}">{$val['title']}</a>
-                          </volist>
-                    </div>
-                </li>
-                <li><a href="{:get_line_cate(5,'url')}">{:get_line_cate(5,'catname')}<img src="__IMG__/bg3.png" width="8" height="5" alt=""></a>
-                    <div class="xl">
-                          <volist name=":get_line_cate_lists(5,10)" id="val">
-                              <a href="{$val['url']}" title="{$val['title']}">{$val['title']}</a>
-                          </volist>
-                    </div>
-                </li>
+                <volist name="line_cate" id="value">
+                    <li>
+                        <a href="{:U('Line/index',array('catid'=>$value['id']))}">{$value['title']}<img src="__IMG__/bg3.png" width="8" height="5" alt=""></a>
+                        <div class="xl">
+                              <volist name="value['_']" id="val">
+                                  <a href="{:U('Line/index',array('catid'=>$value['id'], 'dest'=>$val['id']))}" title="{$val['title']}">{$val['title']}</a>
+                              </volist>
+                        </div>
+                    </li>
+                </volist>
                 <li><a href="{:U('Visa/index/catid/1')}">签证<img src="__IMG__/bg3.png" width="8" height="5" alt=""></a>
                     <div class="xl">
                       <volist name=":get_visa_catlist(0,'Visa/index/catid/')" id="val">
