@@ -118,4 +118,7 @@ class UserApi extends Api{
         return $return;
     }
 
+    public function findPassword($mobile, $password) {
+        return $this->model->findPassword($mobile, $password, 3);
+    }
 }

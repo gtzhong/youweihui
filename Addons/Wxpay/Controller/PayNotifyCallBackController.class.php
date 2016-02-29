@@ -51,7 +51,7 @@ class PayNotifyCallBackController extends WxPayNotify
 			'update_time' =>NOW_TIME
 		);
         M('Order')->where($map)->save($save);
-		transaction($data["out_trade_no"], $data["total_fee"]/100, $data["openid"], '旅游订单', '微信扫码');
+		transaction($data["out_trade_no"], $data["total_fee"]/100, $data["openid"], '线上支付', '微信扫码');
 		return true;
 	}
 }

@@ -30,6 +30,7 @@
             <thead>
                 <tr>
                     <th class="row-selected row-selected"><input class="check-all" type="checkbox"></th>
+                    <th>ID</th>
                     <th>线路名称</th>
                     <th>人气</th>
                     <th>分类</th>
@@ -45,6 +46,7 @@
                 <volist name="_list" id="val">
                     <tr>
 						<td><input class="ids" type="checkbox" name="line_id[]" value="{$val['line_id']}" /></td>
+						<td>{$val['line_id']}</td>
 						<td>{$val['title']} </td>
 						<td>{$val['view_num']}</td>
 						<td>{$val['l_type']|get_line_type}</td>

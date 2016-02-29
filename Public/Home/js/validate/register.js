@@ -15,9 +15,9 @@ front_validate = {
                 alert('手机号码格式错误');
                 return false;
             }
-            var time = 120;
+
             $.ajax({
-                url: 'sendSms',
+                url: 'checkMobile',
                 data: {mobile: value},
                 type: 'post',
                 dataType: 'json',
@@ -26,21 +26,47 @@ front_validate = {
                     than.val('发送中...');
                 },
                 success: function(msg){
-                    if (msg.status) {
-                        var ds = setInterval(function () {
-                            if (time <= 0) {
-                                than.attr('disabled', false);
-                                than.val('重新发送');
-                                clearInterval(ds);
-                            } else {
-                                than.val(time + '秒后重发');
-                                time--;
-                            }
-                        }, 1000);
-                    } else {
-                        alert(msg.info);
+                    if (!msg.status) {
+                        alert("该手机号已使用");
                         than.attr('disabled', false);
                         than.val('重新发送');
+                        return false;
+                    } else {
+                        var time = 120;
+                        $.ajax({
+                            url: 'sendSms',
+                            data: {mobile: value},
+                            type: 'post',
+                            dataType: 'json',
+                            beforeSend: function(){
+                                than.attr('disabled', true);
+                                than.val('发送中...');
+                            },
+                            success: function(msg){
+                                if (msg.status) {
+                                    var ds = setInterval(function () {
+                                        if (time <= 0) {
+                                            than.attr('disabled', false);
+                                            than.val('重新发送');
+                                            clearInterval(ds);
+                                        } else {
+                                            than.val(time + '秒后重发');
+                                            time--;
+                                        }
+                                    }, 1000);
+                                } else {
+                                    alert(msg.info);
+                                    than.attr('disabled', false);
+                                    than.val('重新发送');
+                                }
+                            },
+                            error: function(){
+                                alert('网络异常...');
+                                than.attr('disabled', false);
+                                than.val('重新发送');
+                                return false;
+                            }
+                        })
                     }
                 },
                 error: function(){
@@ -50,7 +76,6 @@ front_validate = {
                     return false;
                 }
             })
-
         })
 
     },

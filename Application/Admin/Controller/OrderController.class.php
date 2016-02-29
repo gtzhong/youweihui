@@ -77,6 +77,10 @@ class OrderController extends AdminController {
         if(!empty($truename)){
             $map['order_id|truename|mobile'] = array(array('like','%'.$truename.'%'), array('like','%'.$truename.'%'), array('like','%'.$truename.'%'),'_multi'=>true);
         }
+        $order_type = I('order_type');
+        if(!empty($order_type)){
+            $map['order_type'] = $order_type;
+        }
         $order_lists = $this->lists('Order', $map, 'order_id desc');
         foreach ($order_lists as $key => $value) {
             $order_lists[$key]['reserve_info'] = unserialize($value['reserve_info']);
@@ -84,15 +88,19 @@ class OrderController extends AdminController {
 			$order_lists[$key]['pay_status_text'] = pay_status_text($value['pay_status']);
             switch ($value['order_type']) {
                 case 'line':
-                    $line = M('Line')->field('title,images,start')->where(array('line_id'=>$value['product_id']))->find();
+                    $line = M('Line')->field('title')->where(array('line_id'=>$value['product_id']))->find();
                     if ($line) {
                         $order_lists[$key]['title'] = $line['title'];
-                        $order_lists[$key]['image'] = get_cover(array_shift(explode(',', $line['images'])), 'path');
-                        $order_lists[$key]['start'] = $line['start'];
                     } else {
                         $order_lists[$key]['title'] = '不存在';
-                        $order_lists[$key]['image'] = '';
-                        $order_lists[$key]['start'] = '';
+                    }
+                    break;
+                case 'visa':
+                    $visa = M('Visa')->field('title')->where(array('visa_id'=>$value['product_id']))->find();
+                    if ($visa) {
+                        $order_lists[$key]['title'] = $visa['title'];
+                    } else {
+                        $order_lists[$key]['title'] = '不存在';
                     }
                     break;
 
@@ -102,7 +110,7 @@ class OrderController extends AdminController {
         }
         // echo '<pre>'; print_r($order_lists); echo '</pre>';
         $this->assign('_list', $order_lists);
-        $this->meta_title = '线路列表';
+        $this->meta_title = '订单列表';
         $this->display();
     }
 
@@ -120,24 +128,27 @@ class OrderController extends AdminController {
         $order_info['pay_status_text'] = pay_status_text($order_info['pay_status']);
         switch ($order_info['order_type']) {
             case 'line':
-                $line = M('Line')->field('title,images,start')->where(array('line_id'=>$order_info['product_id']))->find();
+                $line = M('Line')->field('title')->where(array('line_id'=>$order_info['product_id']))->find();
                 if ($line) {
                     $order_info['title'] = $line['title'];
-                    $order_info['image'] = get_cover(array_shift(explode(',', $line['images'])), 'path');
-                    $order_info['start'] = $line['start'];
                 } else {
                     $order_info['title'] = '不存在';
-                    $order_info['image'] = '';
-                    $order_info['start'] = '';
                 }
                 break;
-
+            case 'visa':
+                $visa = M('Visa')->field('title')->where(array('visa_id'=>$order_info['product_id']))->find();
+                if ($visa) {
+                    $order_info['title'] = $visa['title'];
+                } else {
+                    $order_info['title'] = '不存在';
+                }
+                break;
             default:
                 break;
         }
         // echo '<pre>'; print_r($order_info); echo '</pre>';
 		$this->assign('order_info', $order_info);
-        $this->meta_title = '线路列表';
+        $this->meta_title = '订单详情';
         $this->display();
     }
 

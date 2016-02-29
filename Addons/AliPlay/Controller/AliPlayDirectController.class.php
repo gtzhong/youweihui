@@ -216,7 +216,7 @@ class AliPlayDirectController extends AddonsController{
 					'update_time' =>NOW_TIME
 				);
 				M('Order')->where($map)->save($save);
-				transaction($out_trade_no, $total_fee, $buyer_email, '旅游订单', '支付宝');
+				transaction($out_trade_no, $total_fee, $buyer_email, '线上支付', '支付宝');
 		    } else if ($_POST['trade_status'] == 'TRADE_SUCCESS') {
 				$map = array(
 					'order_id' => $out_trade_no,
@@ -229,7 +229,7 @@ class AliPlayDirectController extends AddonsController{
 					'update_time' =>NOW_TIME
 				);
 				M('Order')->where($map)->save($save);
-				transaction($out_trade_no, $total_fee, $buyer_email, '旅游订单', '支付宝');
+				transaction($out_trade_no, $total_fee, $buyer_email, '线上支付', '支付宝');
 		    }
 		} else {
 		    //验证失败

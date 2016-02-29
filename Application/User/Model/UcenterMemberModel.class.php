@@ -312,6 +312,25 @@ class UcenterMemberModel extends Model{
 		return false;
 	}
 
+	public function findPassword($uid, $password, $type) {
+		$map = array();
+		switch ($type) {
+			case 1:
+				$map['username'] = $uid;
+				break;
+			case 2:
+				$map['email'] = $uid;
+				break;
+			case 3:
+				$map['mobile'] = $uid;
+				break;
+			default:
+				$map['id'] = $uid;
+				break;
+		}
+		return $this->where($map)->save(array('password'=>think_ucenter_md5($password, UC_AUTH_KEY)));
+	}
+
 	/**
 	 * 验证用户密码
 	 * @param int $uid 用户id

@@ -33,30 +33,28 @@ class UserController extends HomeController {
 			$order_lists[$key]['pay_status_text'] = pay_status_text($value['pay_status']);
 			switch ($value['order_type']) {
 				case 'line':
-					$line = M('Line')->field('title,images,starting')->where(array('line_id'=>$value['product_id']))->find();
+					$line = M('Line')->field('title,images,start')->where(array('line_id'=>$value['product_id']))->find();
 					if ($line) {
 						$order_lists[$key]['title'] = $line['title'];
 						$order_lists[$key]['image'] = get_cover(array_shift(explode(',', $line['images'])), 'path');
-						$order_lists[$key]['starting'] = $line['starting'];
+						$order_lists[$key]['start'] = $line['start'];
 						$order_lists[$key]['product_url'] = U('Line/show', array('id'=>$value['product_id']));
 					} else {
 						$order_lists[$key]['title'] = '不存在';
 						$order_lists[$key]['image'] = '';
-						$order_lists[$key]['starting'] = '';
+						$order_lists[$key]['start'] = '';
 						$order_lists[$key]['product_url'] = 'javascript:void(0);';
 					}
 					break;
 				case 'visa':
-					$visa = M('Visa')->field('title,images,starting')->where(array('visa_id'=>$value['product_id']))->find();
+						$visa = M('Visa')->field('title,cover_id')->where(array('visa_id'=>$value['product_id']))->find();
 					if ($visa) {
 						$order_lists[$key]['title'] = $visa['title'];
-						$order_lists[$key]['image'] = get_cover(array_shift(explode(',', $visa['images'])), 'path');
-						$order_lists[$key]['starting'] = $visa['starting'];
+						$order_lists[$key]['image'] = get_cover($visa['cover_id'], 'path');
 						$order_lists[$key]['product_url'] = U('Visa/show', array('id'=>$value['product_id']));
 					} else {
 						$order_lists[$key]['title'] = '不存在';
 						$order_lists[$key]['image'] = '';
-						$order_lists[$key]['starting'] = '';
 						$order_lists[$key]['product_url'] = 'javascript:void(0);';
 					}
 					break;
@@ -100,7 +98,7 @@ class UserController extends HomeController {
 		}
 		if(IS_POST){ //注册用户
 			/* 检测验证码 */
-			$code = session('_register_code');
+			$code = cookie('_register_code');
 			if (empty($code) || $code != $sms_code) {
 				$this->error('验证码输入错误！');
 			}
@@ -284,30 +282,28 @@ class UserController extends HomeController {
 
 			switch ($value['order_type']) {
 				case 'line':
-					$line = M('Line')->field('title,images,starting')->where(array('line_id'=>$value['product_id']))->find();
+					$line = M('Line')->field('title,images,start')->where(array('line_id'=>$value['product_id']))->find();
 					if ($line) {
 						$order_lists[$key]['title'] = $line['title'];
 						$order_lists[$key]['image'] = get_cover(array_shift(explode(',', $line['images'])), 'path');
-						$order_lists[$key]['starting'] = $line['starting'];
+						$order_lists[$key]['start'] = $line['start'];
 						$order_lists[$key]['product_url'] = U('Line/show', array('id'=>$value['product_id']));
 					} else {
 						$order_lists[$key]['title'] = '不存在';
 						$order_lists[$key]['image'] = '';
-						$order_lists[$key]['starting'] = '';
+						$order_lists[$key]['start'] = '';
 						$order_lists[$key]['product_url'] = 'javascript:void(0);';
 					}
 					break;
 				case 'visa':
-					$visa = M('Visa')->field('title,images,starting')->where(array('visa_id'=>$value['product_id']))->find();
+					$visa = M('Visa')->field('title,cover_id')->where(array('visa_id'=>$value['product_id']))->find();
 					if ($visa) {
 						$order_lists[$key]['title'] = $visa['title'];
-						$order_lists[$key]['image'] = get_cover(array_shift(explode(',', $visa['images'])), 'path');
-						$order_lists[$key]['starting'] = $visa['starting'];
+						$order_lists[$key]['image'] = get_cover($visa['cover_id'], 'path');
 						$order_lists[$key]['product_url'] = U('Visa/show', array('id'=>$value['product_id']));
 					} else {
 						$order_lists[$key]['title'] = '不存在';
 						$order_lists[$key]['image'] = '';
-						$order_lists[$key]['starting'] = '';
 						$order_lists[$key]['product_url'] = 'javascript:void(0);';
 					}
 					break;
@@ -341,30 +337,28 @@ class UserController extends HomeController {
 		$order_info['pay_status_text'] = pay_status_text($order_info['pay_status']);
 		switch ($order_info['order_type']) {
 			case 'line':
-				$line = M('Line')->field('title,images,starting')->where(array('line_id'=>$order_info['product_id']))->find();
+				$line = M('Line')->field('title,images,start')->where(array('line_id'=>$order_info['product_id']))->find();
 				if ($line) {
 					$order_info['title'] = $line['title'];
 					$order_info['image'] = get_cover(array_shift(explode(',', $line['images'])), 'path');
-					$order_info['starting'] = $line['starting'];
+					$order_info['start'] = $line['start'];
 					$order_info['product_url'] = U('Line/show', array('id'=>$order_info['product_id']));
 				} else {
 					$order_info['title'] = '不存在';
 					$order_info['image'] = '';
-					$order_info['starting'] = '';
+					$order_info['start'] = '';
 					$order_info['product_url'] = 'javascript:void(0);';
 				}
 				break;
 			case 'visa':
-				$visa = M('Visa')->field('title,images,starting')->where(array('visa_id'=>$order_info['product_id']))->find();
+				$visa = M('Visa')->field('title,cover_id')->where(array('visa_id'=>$order_info['product_id']))->find();
 				if ($visa) {
 					$order_info['title'] = $visa['title'];
-					$order_info['image'] = get_cover(array_shift(explode(',', $visa['images'])), 'path');
-					$order_info['starting'] = $visa['starting'];
+					$order_info['image'] = get_cover($visa['cover_id'], 'path');
 					$order_info['product_url'] = U('Visa/show', array('id'=>$order_info['product_id']));
 				} else {
 					$order_info['title'] = '不存在';
 					$order_info['image'] = '';
-					$order_info['starting'] = '';
 					$order_info['product_url'] = 'javascript:void(0);';
 				}
 				break;
@@ -543,6 +537,51 @@ class UserController extends HomeController {
         }
     }
 
+	public function findPassword($setp = 1){
+		switch ($setp) {
+			case '1':
+				$this->display(findPassword . '_1');
+				break;
+			case '2':
+				if (IS_POST) {
+					/* 检测验证码 */
+					$sms_code = I('sms_code');
+					$code = cookie('_findPassword_code');
+					if (empty($code) || $code != $sms_code) {
+						$this->error('验证码输入错误！');
+					}
+					$mobile = I('mobile', '', 'trim');
+					if (empty($mobile)) {
+						$this->error('用户名不能为空！');
+					}
+					$User = new UserApi;
+					if (!$User->checkMobile($mobile)) {
+						$this->error('用户名不存在！');
+					}
+					cookie('_findPassword_check', 1, 120);
+					cookie('_findPassword_mobile', $mobile, 120);
+					$this->assign('username', $mobile);
+					$this->display(findPassword . '_2');
+				}
+				break;
+			case '3':
+				if (IS_POST) {
+					if (!cookie('_findPassword_check')) {
+						$this->error('验证失败！');
+					}
+					$mobile = cookie('_findPassword_mobile');
+					$password = I('password', '', 'trim');
+					$Api = new UserApi();
+					if ($Api->findPassword($mobile, $password)) {
+						$this->display(findPassword . '_3');
+					} else {
+						$this->error('修改失败');
+					}
+				}
+				break;
+		}
+	}
+
 	// 检查手机号是否已经注册
 	public function checkMobile($mobile){
 		$User = new UserApi;
@@ -554,15 +593,36 @@ class UserController extends HomeController {
 		}
 	}
 
-	// 发送短信验证码
+	// 发送注册短信验证码
 	public function sendSms($mobile){
 		if (!preg_match('/^13[\d]{9}$|^14[5,7]{1}\d{8}$|^15[^4]{1}\d{8}$|^17[0,6,7,8]{1}\d{8}$|^18[\d]{9}$/', $mobile)) {
 			$this->error('手机号错误');
 		}
-		$rand = mt_rand(1000, 9999);
-		session('_register_code', $rand);
-		send_sms($mobile, array('code'=>$rand), 'register');
-		$this->success($rand);
+		$rand = cookie('_register_code');
+		if ($rand) {
+			$this->error('会员注册验证码已经发送');
+		} else {
+			$rand = mt_rand(1000, 9999);
+			cookie('_register_code', $rand, 120);
+			send_sms($mobile, array('code'=>$rand), 'register');
+			$this->success($rand);
+		}
+	}
+
+	// 发送密码找回短信验证码
+	public function sendFindPasswordSms($mobile){
+		if (!preg_match('/^13[\d]{9}$|^14[5,7]{1}\d{8}$|^15[^4]{1}\d{8}$|^17[0,6,7,8]{1}\d{8}$|^18[\d]{9}$/', $mobile)) {
+			$this->error('手机号错误');
+		}
+		$rand = cookie('_findPassword_code');
+		if ($rand) {
+			$this->error('密码找回验证码已经发送');
+		} else {
+			$rand = mt_rand(1000, 9999);
+			cookie('_findPassword_code', $rand, 120);
+			send_sms($mobile, array('code'=>$rand), 'findPassword');
+			$this->success($rand);
+		}
 	}
 
 	private function _checkLogin(){

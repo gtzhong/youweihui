@@ -190,7 +190,7 @@ class LineController extends HomeController {
             $uid = is_login();
             $site_id = I('site_id', 0, 'intval');
             if ($uid) {
-                $result = $Order->input($order_id, $uid, $site_id);
+                $result = $Order->inputLine($order_id, $uid, $site_id);
                 $mobile = get_userinfo($uid, 3);
             } else {
                 $mobile = I('mobile', '', 'trim');
@@ -202,11 +202,11 @@ class LineController extends HomeController {
                     $uid = $User->register('', $password, '', $mobile);
                     if(0 < $uid){ //注册成功
                         send_sms($mobile, array('mobile'=>$mobile, 'password'=>$password), 'password');
-                        $result = $Order->input($order_id, $uid, $site_id);
+                        $result = $Order->inputLine($order_id, $uid, $site_id);
                     }
                 } else {
                     $user_info = $User->getinfo($mobile, 3);
-                    $result = $Order->input($order_id, $user_info[0], $site_id);
+                    $result = $Order->inputLine($order_id, $user_info[0], $site_id);
                 }
             }
 

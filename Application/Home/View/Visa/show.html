@@ -9,11 +9,14 @@
               <img src="{$detail['image']}" alt="">
               <div class="yqianz fl">
                   <a href="#" class="ya1">{$detail['title']}</a>
-                  办理时间：{$detail['work_time']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有效期：{$detail['expiration']}天&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最多停留：{$detail['stay_days']}天  <br>
-  邀请函：{$detail['is_yaoqing']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;面试：{$detail['is_mianshi']}  <br>
+                  办理时间：{$detail['work_time']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  有效期：{$detail['expiration']}<br/>
+                  最多停留：{$detail['stay_days']}<br>
+                  邀请函：{$detail['is_yaoqing']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  面试：{$detail['is_mianshi']}<br/>
                   <div class="ydid">
                       <font>￥</font><span>{$detail['price_cncn']}</span> / 人起
-                      <a href="#" class="ya2">立即预定</a>
+                      <a href="{:U('Visa/order', array('visa_id'=>$detail['visa_id']))}" class="ya2">立即预定</a>
                   </div>
               </div>
           </div>

@@ -5,16 +5,10 @@
     <div class="ddzf_main1_top"></div>
     <div class="ddzf_main1_bottom fix">
         <div class="ddzf_main1_bottom_left">
-            <form id="modiform" name="modiform" method="post" action="{:U('Line/order')}">
-                <input id="line_id" name="line_id" type="hidden" value="{$line_info['line_id']}">
-                <input id="type_id" name="type_id" type="hidden" value="{$tc_info['tc_id']}">
-                <input id="adult_price" name="adult_price" type="hidden" value="{$tc_info['price_info'][0]}">
-                <input id="child_price" name="child_price" type="hidden" value="{$tc_info['price_info'][1]}">
-                <input id="dingjin" name="dingjin" type="hidden" value="1">
-                <input id="discount" name="discount" type="hidden" value="0">
-                <input id="stock" name="stock" type="hidden" value="-1">
-                <!-- <input type="hidden" id="uid" value="38263">
-    <input type="hidden" id="sale_member" value="0"> -->
+            <form id="modiform" name="modiform" method="post" action="{:U('Visa/order')}">
+                <input id="site_id" name="site_id" type="hidden" value="{$visa_info['site_id']}">
+                <input id="visa_id" name="visa_id" type="hidden" value="{$visa_info['visa_id']}">
+                <input id="adult_price" name="adult_price" type="hidden" value="{$visa_info['price_cncn']}">
 
                 <h2 class="fix">
                     <span>您预订的线路</span>
@@ -22,64 +16,56 @@
                 <ol>
                     <li class="fix">
                         <p>线路名称：</p>
-                        <span><a href="javascript:void(0);" title="{$line_info['title']}" style="color:#138ce9;">{$line_info['title']}</a></span>
+                        <span><a href="javascript:void(0);" title="{$visa_info['title']}" style="color:#138ce9;">{$visa_info['title']}</a></span>
+                    </li>
+                    <li class="fix">
+                        <p>门 市 价 ：</p>
+                        <span><em id="price_cncn">{$visa_info['price']}</em> 元/人</span>
                     </li>
                     <li class="fix">
                         <p>优 惠 价 ：</p>
-                        <span>成人
-                            <em id="price_cncn">{$tc_info['price_info'][0]}</em> 元/人 儿童
-                            <em id="price_cncn_child">{$tc_info['price_info'][1]}</em> 元/人</span>
+                        <span><em id="price_cncn">{$visa_info['price_cncn']}</em> 元/人</span>
                     </li>
-                    <li class="fix">
-                        <p>价格类型：</p>
-                        <span>
-                            <ul id="price_type" class="price_type">
-                                <volist name="line_tc" id="val">
-                                    <eq name="val['tc_id']" value="$tc_info['tc_id']">
-                                        <li style="margin-top:0;" class="selected" id="li_date_type_{$val['tc_id']}" htmlfor="{$val['tc_id']}">
-                                            <a href="javascript:line.date_type('{$val['tc_id']}','{:date('Y-m-d')}','{$val['price']}','{$val['best_price']}','0',' {$val['typename']}','-1');line.view_order('{$tc_info['price_info'][3]}','{$tc_info['price_info'][0]}','{$tc_info['tc_id']}','-1');"
-                                            title="{$val['update_price_explan']}">{$val['typename']}</a>
-                                        </li>
-                                    <else />
-                                        <li style="margin-top:0;" class="selected" id="li_date_type_{$val['tc_id']}" htmlfor="{$val['tc_id']}">
-                                            <a href="javascript:line.date_type('{$val['tc_id']}','{:date('Y-m-d')}','{$val['price']}','{$val['best_price']}','0',' {$val['typename']}','-1');" title="{$val['update_price_explan']}">{$val['typename']}</a>
-                                        </li>
-                                    </eq>
-                                </volist>
-                            </ul>
-                        </span>
-                    </li>
-                    <li class="fix">
-                        <p>
-                            <em>*</em>出发日期： </p>
-                        <span>
-                            <input id="start_time" name="start_time" type="text" value="{$tc_info['price_info'][3]}" class="riqi valid wbk2" readonly="readonly">
-                        </span>
-                        <div class="date_table" id="calendar" style="display: none;"><b onclick="line.close_calendar();">隐藏</b></div>
-                    </li>
-                    <li class="fix">
-                        <p>
-                            <em>*</em>参团人数： </p>
 
+                    <li class="fix">
+                        <p><em>*</em>出发日期 ：</p>
                         <span>
-                            <input id="adult_num" name="adult_num" type="text" class="text wbk1" value="1" onKeyUp="line.sum_order(this);">
-                            <z>成人</z>
-                            <em></em>
-                            <input id="child_num" name="child_num" type="text" class="text wbk1" value="0" onKeyUp="line.sum_order(this);">
-                            <z>儿童</z>
-                            <em></em>
+                            <script src="__JS__/laydate/laydate.js"></script>
+                            <input name="start_time" type="text" value="{:date('Y-m-d')}" class="riqi valid wbk2" onclick="laydate({min:laydate.now()})">
+                        </span>
+                    </li>
+                    <li class="fix">
+                        <p><em>*</em>预定人数 ：</p>
+                        <span>
+                            <input id="adult_num" name="adult_num" type="text" class="text wbk1" value="1"><z>人</z>
                         </span>
                     </li>
                     <li class="fix">
                         <p>总计费用：</p>
-                        <span>
-                            <em id="total_price_s">{$tc_info['price_info'][0]}</em>元</span>
+                        <span><em id="total_price_s">{$visa_info['price_cncn']}</em>元</span>
                     </li>
                 </ol>
                 <h2 class="fix">
                     <span>您的联系资料</span>
                     <em>( 如果购买保险，请务必填写真实姓名和身份证号码 )</em>
                 </h2>
+                <script type="text/javascript">
+                    $(function(){
+                        var adult_price = $("#adult_price").val(),
+                            total_price = $("#total_price_s")
+                        $("#adult_num").change(function(){
+                            console.log(this);
+                            var adult_num = $(this).val()
+                            if (adult_num > 0) {
+                                total_price.html(adult_num * adult_price)
+                            } else {
+                                alert("最小数1")
+                                $(this).val(1)
+                                total_price.html(adult_price)
+                            }
+                        })
+                    })
+                </script>
                 <ul>
                     <li class="fix">
                         <p>

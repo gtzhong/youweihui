@@ -28,9 +28,9 @@
             <volist name="visa_lists" id="val">
                     <div class="y_k01 fix">
                       <if condition=" $val['image'] !='' ">
-                           <img src="{$val['image']}" alt="" class="fl">
+                           <img width="221" height="161" src="{$val['image']}" alt="" class="fl">
                       <else/>
-                           <img width='221' height='161' src="__IMG__/no_picture.gif" alt="" class="fl">
+                           <img width="221" height="161" src="__IMG__/no_picture.gif" alt="" class="fl">
                       </if>
 
                         <div class="y_art01 fl">
@@ -45,7 +45,7 @@
                             受理范围: {$val['acceptance_range']}
                         </div>
                         <span><bdo>￥</bdo><font>{$val['price_cncn']}</font>元起</span>
-                        <a href="#">立即预定</a>
+                        <a href="{$val['url']}">立即预定</a>
                     </div>
               </volist>
           </div>

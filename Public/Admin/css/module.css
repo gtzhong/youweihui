@@ -152,6 +152,15 @@ label.textarea ~ .check-tips {
 	line-height: 26px;
 	border: 0 none;
 }
+.search-form .search-select {
+	float: left;
+	padding: 2px 4px;
+	width: 100px;
+	height: 24px;
+	line-height: 26px;
+	border: 0 none;
+	border-right: solid 1px #eee;
+}
 .search-form .sch-btn {
 	float: left;
 	margin: 2px 2px 0 0;

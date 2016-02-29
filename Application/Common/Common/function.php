@@ -16,6 +16,7 @@ const ONETHINK_ADDON_PATH = './Addons/';
 function send_sms($mobile, $data, $tid = 'default') {
     $temp = array(
         'password' => '系统自动生成帐号：mobile，会员随机密码：password，请妥善保管。客服电话:kefu',
+        'findPassword' => '找回密码验证码：code，请完成验证，如非本人操作，请忽略本短信。客服电话:kefu',
         'register' => '注册会员验证码：code，请完成验证，如非本人操作，请忽略本短信。客服电话:kefu',
         'onOrder' => '亲，您的订单已提交成功，订单编号orderid，我们会尽快处理并联系您确认，请耐心等待，客服电话:kefu',
         'unOrder' => '抱歉，订单出错，已被处理为无效订单，订单编号orderid。如有疑问请咨询客服，客服电话：kefu。',
@@ -220,11 +221,11 @@ function get_line_position($catid='',$posid=1,$num=5,$order='line_id desc'){
         'end_time' => array('gt', NOW_TIME),
         'is_default' => 1,
     );
-    $line_lists = $LineView->field('dest,start')->where($map)->order($order)->limit(0,$num)->select();
+    $line_lists = $LineView->field('line_id,dest,start,images,price,best_price')->where($map)->order($order)->limit(0,$num)->select();
     foreach ($line_lists as $key => $val) {
           $line_lists[$key]['img'] = get_cover(array_shift(explode(',', $val['images'])), 'path');
           $line_lists[$key]['url'] = U('Line/show', array('id'=>$val['line_id']));
-		  $line_lists[$key]['save'] = $line_lists[$key]['price']-$line_lists[$key]['best_price'];
+		  $line_lists[$key]['save'] = $val['price']-$val['best_price'];
     }
     return $line_lists;
 }
@@ -284,7 +285,7 @@ function get_visa_position($catid=0,$posid=1,$num=5){
       }
       $map['status'] = 1;
       $map['position'] = $posid;
-      $visa_list = $Visa->where($map)->order('sort asc,update_time desc')->limit(0,$num)->select();
+      $visa_list = $Visa->where($map)->order('sort desc,update_time desc')->limit(0,$num)->select();
       foreach($visa_list as $key=>$val){
          $visa_list[$key]['thumb']=  get_cover($val['cover_id'],'path');
          $visa_list[$key]['url'] = U('Visa/show',array('id'=>$val['visa_id']));
