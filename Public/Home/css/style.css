@@ -66,10 +66,15 @@
 .search span { width:142px; height:20px; margin:9px 0; padding-right:5px; float:left; }
 .search span a { font-family:"宋体"; font-size:12px; color:#878787; height:20px; line-height:20px; margin-right:5px; padding:0 4px; background-color:#f3f3f3; float:right; }
 .search .btn { width:45px; height:38px; background:url(../images/bg1.png) no-repeat center; border:none; border-left:1px solid #e0e0e0; float:left; }
-.tel { width:230px;margin-top:30px;float:right;}
+.tel {/* width:230px; *//* margin-top:30px; *//* float: left; */}
 .tel ol { width:47px; float:left; }
 .tel ul { color:#4aac0f; width:170px; line-height:21px; float:right; }
 .tel ul span { font-size:24px; color:#0091ed; display:block; }
+
+.tel-top {width:230px; margin-top:30px; float: right; }
+.tel-top ol { width:47px; float:left; }
+.tel-top ul { color:#4aac0f; width:170px; line-height:21px; float:right; }
+.tel-top ul span { font-size:24px; color:#0091ed; display:block; }
 
 /* 导航 */
 .nav { width:100%; height:43px; background:url(../images/pic2.jpg) no-repeat center top; }
@@ -198,7 +203,7 @@
 .main2_bottom .title_nr1_right dl:hover dt span{ display:block;}
 .main2_bottom .title_nr1_right dl dt span a{ font-size:22px; color:#fb9f00; width:120px; height:39px; line-height:39px; text-align:center; padding:78px 71px 77px; background:url(../images/bg30.png) no-repeat center; display:block;}
 .main2_bottom .title_nr1_right dl dd{ width:262px;}
-.main2_bottom .title_nr1_right dl dd a{ color:#484848; width:262px; line-height:20px; margin-top:10px; display:block;}
+.main2_bottom .title_nr1_right dl dd a{ color:#484848; width:262px; line-height:20px; margin-top:10px; display:block; height: 40px; overflow: hidden;}
 .main2_bottom .title_nr1_right dl dd p{ color:#b6b6b6; margin-top:5px; float:left;}
 .main2_bottom .title_nr1_right dl dd span{ color:#b0b0b0; float:right;}
 .main2_bottom .title_nr1_right dl dd span em{ font-size:22px; color:#fb9400;}
@@ -888,7 +893,7 @@ div.slideBox div.tips div.nums a.active{ width:10px; height:10px; background:url
 
 /*线路详情页*/
 .top_rht .key{ clear:both; display:block; width:438px; border:1px solid #cce1f1; padding:5px 0 8px 0; background:#f6fbff; overflow:hidden;}
-.key dl{ position:relative;width:440px; float:left;line-height:30px;}
+.key dl{position:relative;width:440px;float:left;line-height:30px;}
 .key dl.h40{line-height:40px;}
 .key dl b{position:absolute; top:-15px; right:0;width:42px; padding-right:14px;height:14px; line-height:14px; font-weight:normal; color:#555; background:url(../images/close.gif) no-repeat 26px 0;font-size: 12px;}
 .key dt{clear:both;/* width:70px; */float:left;text-align:right;}
@@ -907,18 +912,18 @@ div.slideBox div.tips div.nums a.active{ width:10px; height:10px; background:url
 .key li.selected a:hover{ display:block; border:1px solid #EB6100;}
 
 
-.key .button{ width:420px; float:left; margin-top:10px; margin-left:70px; display:inline;}
+.key .button{width:420px;float:left;margin-top:10px;/* margin-left:70px; */display:inline;}
 .key .button span{ position:relative; width:94px; float:left; text-align:center; height:31px; font-size:14px; font-weight:bold; line-height:30px; z-index:2;}
 .key .button span a{ display:block; width:94px; height:31px; color:#FFF; text-decoration:none;}
 
-.key .button s.tel{/* width: 255px; */white-space: nowrap;display:inline-block; padding:12px 0 0 20px; height:14px; line-height:15px; color:#888; text-decoration:none; z-index:1;}
+.key .button s.tel{/* width: 255px; */white-space: nowrap;display: block;padding:12px 0 0 20px;height:14px;line-height:15px;color:#888;text-decoration:none;z-index:1;}
 .key .button s.tel em{ color:#2d93c9; font-size:14px; font-weight:bold;}
 .key .button div{ clear:both; display:block; line-height:30px; color:#999;}
 .key .button div em{ padding:0 3px; color:#F60; font-family:Tahoma;}
 
 /*出发日期和价格*/
 .date td.nav_on,.date td a:hover,.date .today,.date td.nav_on{ background:url(../images/ico_show.png) no-repeat;}
-.date{ clear:both; float:left\0; display:inline\0; width:420px; font-family:Arial; text-align:center; border-left:1px solid #e1e1e1;border-top:1px solid #e1e1e1; background:#fcfcfc; margin:0 10px 0 10px;}
+.date{clear:both;float:left\0;display:inline\0;width:420px;font-family:Arial;text-align:center;border-left:1px solid #e1e1e1;border-top:1px solid #e1e1e1;background:#fcfcfc;margin: 0px;}
 
 #date_table30{ margin:10px auto;}
 .date th{ background:#f4f4f4; border-right:1px solid #e1e1e1; font-weight:normal; border-bottom:1px solid #e1e1e1; font-size:12px; text-align:center; line-height:16px; height:24px; color:#333;}

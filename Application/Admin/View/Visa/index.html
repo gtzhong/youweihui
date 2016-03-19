@@ -46,7 +46,7 @@
                 <volist name="_list" id="val">
                     <tr>
 						<td><input class="ids" type="checkbox" name="visa_id[]" value="{$val['visa_id']}" /></td>
-						<td>{$val['title']}</td>
+						<td><a href="{:U('Home/visa/index', array('id'=>$val['visa_id']))}" target="_blank">{$val['title']}</a></td>
 						<td>{$val['base_hits']}</td>
 						<td>{$val['sub_id']}</td>
 						<td>{$val['sort']}</td>

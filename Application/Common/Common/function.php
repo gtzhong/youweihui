@@ -28,7 +28,7 @@ function send_sms($mobile, $data, $tid = 'default') {
     // $content = str_replace('%s', $data, $temp[$tid]);
     $content = strtr($temp[$tid], $data);
     $para = array(
-        'userid' => '2901',
+        'userid' => '124',
         'account' => 'ywhui',
         'password' => 'ywh1601',
         'mobile' => $mobile,
@@ -37,7 +37,7 @@ function send_sms($mobile, $data, $tid = 'default') {
         'action' => 'send',
         'extno' => '',
     );
-    $curl = curl_init('http://115.29.101.9:9001/sms.aspx');
+    $curl = curl_init('http://120.27.196.134:8888/sms.aspx');
 	curl_setopt($curl, CURLOPT_HEADER, 0 ); // 过滤HTTP头
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);// 显示输出结果
 	curl_setopt($curl, CURLOPT_POST, true); // post传输数据
@@ -221,7 +221,7 @@ function get_line_position($catid='',$posid=1,$num=5,$order='line_id desc'){
         'end_time' => array('gt', NOW_TIME),
         'is_default' => 1,
     );
-    $line_lists = $LineView->field('line_id,dest,start,images,price,best_price')->where($map)->order($order)->limit(0,$num)->select();
+    $line_lists = $LineView->field('line_id,title,dest,start,images,price,best_price')->where($map)->order($order)->limit(0,$num)->select();
     foreach ($line_lists as $key => $val) {
           $line_lists[$key]['img'] = get_cover(array_shift(explode(',', $val['images'])), 'path');
           $line_lists[$key]['url'] = U('Line/show', array('id'=>$val['line_id']));

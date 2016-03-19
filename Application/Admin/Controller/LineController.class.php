@@ -142,7 +142,7 @@ class LineController extends AdminController {
                     }
                     $LineType->addAll($dataList);
                 }
-                $this->success('成功', U('index'));
+                $this->success('成功', U('edit2', array('line_id'=>$line_id)));
             } else {
                 $this->error($Line->getError());
             }
@@ -193,6 +193,8 @@ class LineController extends AdminController {
         }
         if (IS_POST) {
 
+
+            // $this->success('成功', U('edit2', array('line_id'=>$line_id)));
         } else  {
             $this->getMenu();
             // 操作步骤
@@ -212,7 +214,7 @@ class LineController extends AdminController {
             }
             $this->assign('line_tc', $line_tc);
             $this->assign('line_id', $line_id);
-            $this->meta_title   =   '编辑线路2';
+            $this->meta_title   =   '编辑线路价格';
             $this->display();
         }
     }
@@ -230,7 +232,7 @@ class LineController extends AdminController {
             $data['update_time'] = NOW_TIME;
             $result = $Line->save($data);
             if ($result) {
-                $this->success('成功');
+                $this->success('成功', U('index'));
             } else {
                 $this->error('失败');
             }
@@ -248,7 +250,7 @@ class LineController extends AdminController {
             $data['xingcheng'] = unserialize($data['xingcheng']);
             $data['remark'] = unserialize($data['remark']);
             $this->assign('data', $data);
-            $this->meta_title   =   '编辑线路3';
+            $this->meta_title   =   '编辑线路行程';
             $this->display();
         }
     }

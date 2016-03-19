@@ -47,7 +47,7 @@
                     <tr>
 						<td><input class="ids" type="checkbox" name="line_id[]" value="{$val['line_id']}" /></td>
 						<td>{$val['line_id']}</td>
-						<td>{$val['title']} </td>
+						<td><a href="{:U('Home/Line/show', array('id'=>$val['line_id']))}" target="_blank">{$val['title']}</a></td>
 						<td>{$val['view_num']}</td>
 						<td>{$val['l_type']|get_line_type}</td>
 						<td>{$val['ct_type']|get_can_tuan}</td>

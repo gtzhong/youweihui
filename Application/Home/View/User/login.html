@@ -2,31 +2,35 @@
 <block name="nav"></block>
 <block name="body">
     <section class="dl_main" style="background:url(__IMG__/dlzc_bg.jpg) no-repeat center top">
-    	<div class="dl_main_nr auto">
-        	<div class="dl_main_nrk">
-            	<div class="dl_main_nrk_top">用户登录</div>
-            	<div class="dl_main_nrk_bottom fix">
-                    <form class="" action="" method="post">
-                	<div class="dl_main_nrk_bottom_left">
-                    	<ol class="fix">
-                        	<p><img src="__IMG__/bg47.png" width="21" height="19"></p>
-                            <span><input name="mobile" class="seach_in1 search-keyword wbk" type="text" id="search" value="请输入手机号" onfocus="if(this.value=='请输入手机号'){this.value='';}"  onblur="if(this.value==''){this.value='请输入手机号';}"/></span>
-                            <em><img src="__IMG__/bg49.png" width="17" height="17"> 请输入手机号</em>
-                        </ol>
-                    	<ol class="fix">
-                        	<p><img src="__IMG__/bg45.png" width="22" height="19"></p>
-                            <span><input name="password" class="seach_in1 search-keyword wbk" type="text" id="search" value="请输入密码"onfocus="if(this.value=='请输入密码'){this.value='';}"  onblur="if(this.value==''){this.value='请输入密码';}"/></span>
-                            <em><img src="__IMG__/bg49.png" width="17" height="17"> 请输入密码</em>
-                        </ol>
-                        <ul class="fix">
-                        	<span>
+        <div class="dl_main_nr auto">
+            <div class="dl_main_nrk">
+                <div class="dl_main_nrk_top">用户登录</div>
+                <div class="dl_main_nrk_bottom fix">
+                    <form class="" action="" method="post" autocomplete="off">
+                        <input type="text" name="clear" style="position:fixed;bottom:-9999px;">
+                        <input type="password" name="clear" style="position:fixed;bottom:-9999px;">
+                        <div class="dl_main_nrk_bottom_left">
+                            <ol class="fix">
+                                <p><img src="__IMG__/bg47.png" width="21" height="19"></p>
+                                <span><input name="mobile" class="seach_in1 search-keyword wbk" type="text" placeholder="请输入手机号"/></span>
+                                <em><img src="__IMG__/bg49.png" width="17" height="17"> 请输入手机号</em>
+                            </ol>
+                            <ol class="fix">
+                                <p><img src="__IMG__/bg45.png" width="22" height="19"></p>
+                                <span><input name="password" class="seach_in1 search-keyword wbk" type="password" placeholder="请输入密码"/></span>
+                                <em><img src="__IMG__/bg49.png" width="17" height="17"> 请输入密码</em>
+                            </ol>
+                            <ul class="fix">
+                                <span>
                         	<input name="checkbox" type="checkbox" id="checkbox" checked> 一周内自动登录</span>
-                            <a href="{:U('User/findPassword')}" title="">找回密码</a>
-                        </ul>
-                        <dl><input type="submit" name="button2" id="button2" value="登录" class="btn"></dl>
-                    </div>
+                                <a href="{:U('User/findPassword')}" title="">找回密码</a>
+                            </ul>
+                            <dl>
+                                <input type="submit" name="button2" id="button2" value="登录" class="btn">
+                            </dl>
+                        </div>
                     </form>
-                	<div class="dl_main_nrk_bottom_right">还没有游尾会旅游账号？<a href="{:U('User/register')}" title="">立即注册 -></a></div>
+                    <div class="dl_main_nrk_bottom_right">还没有游尾会旅游账号？<a href="{:U('User/register')}" title="">立即注册 -></a></div>
                 </div>
             </div>
         </div>

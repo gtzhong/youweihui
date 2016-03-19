@@ -75,9 +75,8 @@
 			</div>
 		</div>
 		<div class="form-item cf">
-			<button class="btn submit-btn ajax-post hidden" id="submit" type="submit" name="1" target-form="form-horizontal">确定发布</button>
-			<button class="btn btn-return ajax-post hidden" id="submit" type="submit" name="0" target-form="form-horizontal">确定保存</button>
-			<input type="hidden" name="line_id" value="{$data['line_id']}"/>
+			<a href="{:U('edit', array('line_id'=>$line_id))}" class="btn btn-return">上一步</a>
+			<a href="{:U('edit3', array('line_id'=>$line_id))}" class="btn btn-return">下一步</a>
 		</div>
 	</form>
 </div>

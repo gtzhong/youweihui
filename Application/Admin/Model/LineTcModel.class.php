@@ -34,7 +34,7 @@ class LineTcModel extends Model{
             return false;
         }
         $count = $this->where(array('line_id'=>$data['line_id']))->count();
-        if (!$count && $data['tc_id']) {
+        if (empty($count)) {
             $this->is_default = 1;
         }
         if ($data['date_price_data']) {

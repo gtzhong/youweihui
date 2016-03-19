@@ -2,42 +2,49 @@
 <block name="nav"></block>
 <block name="body">
     <section class="zc_main" style="background:url(__IMG__/dlzc_bg.jpg) no-repeat center top">
-    	<div class="zc_main_nr auto">
-        	<div class="zc_main_nrk" style="margin-top: 44.5px;">
-            	<div class="zc_main_nrk_top">会员注册</div>
-            	<div class="zc_main_nrk_bottom fix">
-                    <form id="modiform" class="" action="" method="post">
-                	<div class="zc_main_nrk_bottom_left">
-                    	<ol class="fix">
-                        	<p><img src="__IMG__/bg44.png" width="21" height="19"></p>
-                            <span><input id="mobile" name="mobile" class="seach_in1 search-keyword wbk" type="text" id="search" value="请输入手机号" onfocus="if(this.value=='请输入手机号'){this.value='';}" onblur="if(this.value==''){this.value='请输入手机号';}"></span>
-                            <em><img src="__IMG__/bg49.png" width="17" height="17"> 请输入手机号/邮箱</em>
-                        </ol>
-                        <ul class="fix">
-                        	<input type="text" id="sms_code" name="sms_code" id="textfield" class="wbk">
-                            <input type="button" id="send_sms" value="获取验证码" class="btn">
-                            <em><img src="__IMG__/bg49.png" width="17" height="17"> 请输入验证码</em>
-                        </ul>
-                    	<ol class="fix">
-                        	<p><img src="__IMG__/bg45.png" width="22" height="19"></p>
-                            <span><input id="password" name="password" class="seach_in1 search-keyword wbk" type="text" id="search" value="密码（6-20位字母、数字、符号组合）" onfocus="if(this.value=='密码（6-20位字母、数字、符号组合）'){this.value='';}" onblur="if(this.value==''){this.value='密码（6-20位字母、数字、符号组合）';}"></span>
-                            <em><img src="__IMG__/bg49.png" width="17" height="17"> 请输入密码</em>
-                            <em class="fix"><a href="#" title=""></a><a href="#" title=""></a><a href="#" title=""></a></em>
-                        </ol>
-                    	<ol class="fix">
-                        	<p><img src="__IMG__/bg45.png" width="22" height="19"></p>
-                            <span><input id="confirm_password" name="confirm_password" class="seach_in1 search-keyword wbk" type="text" id="search" value="确认密码" onfocus="if(this.value=='确认密码'){this.value='';}" onblur="if(this.value==''){this.value='确认密码';}"></span>
-                            <em><img src="__IMG__/bg49.png" width="17" height="17"> 请再次输入密码</em>
-                        </ol>
-                    	<ol class="fix">
-                        	<p><img src="__IMG__/bg46.png" width="23" height="19"></p>
-                            <span><input id="email" name="email" class="seach_in1 search-keyword wbk" type="text" id="search" value="" placeholder="邮箱注册" title="邮箱注册"></span>
-                            <em><img src="__IMG__/bg49.png" width="17" height="17"> 请输入邮箱注册</em>
-                        </ol>
-                        <dl><a href="zhucechenggong.html" title=""><input type="submit" name="button2" id="button2" value="注册" class="btn"></a></dl>
-                    </div>
+        <div class="zc_main_nr auto">
+            <div class="zc_main_nrk" style="margin-top: 44.5px;">
+                <div class="zc_main_nrk_top">会员注册</div>
+                <div class="zc_main_nrk_bottom fix">
+                    <form id="modiform" class="" action="" method="post" autocomplete="off">
+                        <input type="text" name="clear" style="position:fixed;bottom:-9999px;">
+                        <input type="password" name="clear" style="position:fixed;bottom:-9999px;">
+                        <div class="zc_main_nrk_bottom_left">
+                            <ol class="fix">
+                                <p><img src="__IMG__/bg44.png" width="21" height="19"></p>
+                                <span><input type="text" id="mobile" name="mobile" class="seach_in1 search-keyword wbk" placeholder="请输入手机号"></span>
+                                <em><img src="__IMG__/bg49.png" width="17" height="17"> 请输入手机号/邮箱</em>
+                            </ol>
+                            <ul class="fix">
+                                <input type="" id="sms_code" name="sms_code" class="wbk" placeholder="请输入4位验证码">
+                                <input type="button" id="send_sms" value="获取验证码" class="btn">
+                                <em><img src="__IMG__/bg49.png" width="17" height="17"> 请输入验证码</em>
+                            </ul>
+
+                            <ol class="fix">
+                                <p><img src="__IMG__/bg45.png" width="22" height="19"></p>
+                                <span><input id="password" name="password" class="seach_in1 search-keyword wbk" type="password" placeholder="密码（6-20位字母、数字、符号组合）"></span>
+                                <em><img src="__IMG__/bg49.png" width="17" height="17"> 请输入密码</em>
+                                <em class="fix"><a href="#" title=""></a><a href="#" title=""></a><a href="#" title=""></a></em>
+                            </ol>
+                            <ol class="fix">
+                                <p><img src="__IMG__/bg45.png" width="22" height="19"></p>
+                                <span><input id="confirm_password" name="confirm_password" class="seach_in1 search-keyword wbk" type="password"  placeholder="确认密码"></span>
+                                <em><img src="__IMG__/bg49.png" width="17" height="17"> 请再次输入密码</em>
+                            </ol>
+                            <ol class="fix">
+                                <p><img src="__IMG__/bg46.png" width="23" height="19"></p>
+                                <span><input id="email" name="email" class="seach_in1 search-keyword wbk" type="text"  value="" placeholder="邮箱注册" title="邮箱注册"></span>
+                                <em><img src="__IMG__/bg49.png" width="17" height="17"> 请输入邮箱注册</em>
+                            </ol>
+                            <dl>
+                                <a href="zhucechenggong.html" title="">
+                                    <input type="submit" name="button2" id="button2" value="注册" class="btn">
+                                </a>
+                            </dl>
+                        </div>
                     </form>
-                	<div class="zc_main_nrk_bottom_right">已有游尾会旅游账号？<a href="{:U('User/login')}" title="">立即登录 -&gt;</a></div>
+                    <div class="zc_main_nrk_bottom_right">已有游尾会旅游账号？<a href="{:U('User/login')}" title="">立即登录 -&gt;</a></div>
                 </div>
             </div>
         </div>

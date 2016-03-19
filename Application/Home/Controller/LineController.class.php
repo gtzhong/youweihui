@@ -185,6 +185,9 @@ class LineController extends HomeController {
 
     public function order(){
         if (IS_POST) {
+            if (!check_verify(I('verify'))) {
+                $this->error('验证码输入错误');
+            }
             $Order = D('Order');
             $order_id = 'NS' . date('YmdHis') . mt_rand(1000, 9999);
             $uid = is_login();

@@ -89,21 +89,21 @@ $(function(){
 
   //--------------------------------------W
   //首页切换图标
-  $('.wmdcn_nr_right ul li').hover(function(){
-        $(this).css('width','694px');
-        $(this).find('.ymg1').stop(true,true).fadeOut(600);
-        $(this).find('.ymg2').stop(true,true).fadeIn(700);
-        $('.y_zi1').hide();
-        $(this).find('.y_zi2').show();
-        $(this).siblings().css('width','100px');
-    },function(){
-        $(this).css('width','250px');
-        $(this).find('.ymg2').stop(true,true).fadeOut(1000);
-        $(this).find('.ymg1').stop(true,true).fadeIn(1500);
-        $(this).find('.y_zi2').hide();
-        $('.y_zi1').show();
-        $(this).siblings().css('width','250px');
-  })
+  // $('.wmdcn_nr_right ul li').hover(function(){
+  //       $(this).css('width','694px');
+  //       $(this).find('.ymg1').stop(true,true).fadeOut(600);
+  //       $(this).find('.ymg2').stop(true,true).fadeIn(700);
+  //       $('.y_zi1').hide();
+  //       $(this).find('.y_zi2').show();
+  //       $(this).siblings().css('width','100px');
+  //   },function(){
+  //       $(this).css('width','250px');
+  //       $(this).find('.ymg2').stop(true,true).fadeOut(1000);
+  //       $(this).find('.ymg1').stop(true,true).fadeIn(1500);
+  //       $(this).find('.y_zi2').hide();
+  //       $('.y_zi1').show();
+  //       $(this).siblings().css('width','250px');
+  // })
 
   //签证页面tip滚动
 

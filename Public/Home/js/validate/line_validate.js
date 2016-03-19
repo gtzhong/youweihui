@@ -39,21 +39,6 @@ front_validate = {
                 },
                 intro:{
                     maxlength: 100
-                },
-                verify:{
-                    required: true,
-                    minlength: 4,
-                    maxlength: 4,
-                    remote: {
-                        url: "/Line/checkCode",
-                        type: "post",
-                        dataType: "json",
-                        data: {
-                            verify: function() {return $("#verify").val();},
-                            type: 'line'
-                        }
-                    }
-
                 }
             },
             messages: {
@@ -79,12 +64,6 @@ front_validate = {
                 },
                 intro:{
                     maxlength: "<i></i>最多为100个字"
-                },
-                verify:{
-                    required: "<i></i>请输入验证码",
-                    minlength: "<i></i>验证码为4个字符",
-                    maxlength: "<i></i>验证码为4个字符",
-                    remote : $.format("<i></i>验证码错误!")
                 }
             }
         });

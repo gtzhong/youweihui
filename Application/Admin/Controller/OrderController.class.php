@@ -220,7 +220,7 @@ class OrderController extends AdminController {
         }
         if ($result) {
 
-            $this->success('成功');
+            $this->success('成功', U('index'));
         } else {
             $this->error('失败');
         }
