@@ -261,6 +261,8 @@ class LineController extends HomeController {
             if (empty($tc_info['price_info'])) {
                 $this->error('没有价格');
             }
+            $line_info['xingcheng'] = unserialize($line_info['xingcheng']);
+            $line_info['remark'] = unserialize($line_info['remark']);
             $this->assign('line_info', $line_info);
             $this->assign('line_tc', $line_tc);
             $this->assign('tc_info', $tc_info);

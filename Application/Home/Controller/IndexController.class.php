@@ -8,21 +8,27 @@
 // +----------------------------------------------------------------------
 
 namespace Home\Controller;
-use User\Api\UserApi;
 
 /**
- * 前台首页控制器
+ * 前台首页控制器.
  */
 class IndexController extends HomeController {
-      public function index(){
+    /**
+     * [index description].
+     *
+     * @return [type] [description]
+     */
+    public function index() {
 
-          $this->display();
-      }
+        $this->display();
+    }
 
-      public function send(){
-
-
-
-          print_r(send_sms('15044858848', array('content'=>'测试信息')));
-      }
+    /**
+     * [send description].
+     *
+     * @return [type] [description]
+     */
+    public function send() {
+        print_r(send_sms('15044858848', array('content' => '测试信息')));
+    }
 }

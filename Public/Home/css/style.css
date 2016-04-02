@@ -112,7 +112,7 @@
 .ilx-schtxfd input { background:url(../images/bg8.png) no-repeat 215px center; }
 .ilx-schlist { position: absolute; left: 0; top: 62px; width: 415px; z-index: 5; display: none; }
 .ilx-schlist-wrap { float: left; min-width: 215px; padding: 15px 5px 15px 20px; background: #fff; border: 1px solid #4faae3; position: relative; z-index:8; }
-.ilx-schlist li { float: left; font-family:"宋体"; font-size: 12px; color: #707070; margin: 7px 10px 7px 0; cursor: pointer; min-width: 28px; }
+.ilx-schlist li {float: left;font-family:"宋体";font-size: 12px;color: #707070;/* margin: 7px 10px 7px 0; */padding: 7px 10px 7px 0;cursor: pointer;min-width: 28px;}
 .ilx-clsprt { width: 8px; height: 8px; background:url(../images/bg14.png) no-repeat; position: absolute; top: 5px; right:5px; cursor: pointer; z-index: 9; }
 .ico-pl { background:url(../images/bg9.png) no-repeat left center; }
 .ico-am { background:url(../images/bg10.png) no-repeat left center; }
@@ -657,10 +657,17 @@
 .yul2 li:hover a{ color:#0091ed;}
 
 .pages{ width:100%; text-align:center; padding: 38px 0px 20px 0px;}
-.pages a{ display:inline-block; border:1px solid #cecece; font-size:12px; padding:6px 10px 6px 10px; color:#6B6B6B; margin-left: 10px;}
+.pages a{display:inline-block;border:1px solid #cecece;font-size:12px;padding:6px 10px 6px 10px;color:#6B6B6B;margin: 0 5px;}
 .pages a.yling{ border:none;}
 .pages a.yling2{ border:1px solid #8c8c8c;}
 .pages a:hover{ background:#6B6B6B; color:#FFF;}
+.pages .current {
+    padding: 6px 10px 6px 10px;
+    background-color: #FF9C00;
+    color: #FFFFFF;
+    font-weight: bold;
+    margin: 0 5px;
+}
 
 .fs{ font-family: "宋体";}
 /*签证*/
@@ -965,6 +972,11 @@ div.slideBox div.tips div.nums a.active{ width:10px; height:10px; background:url
 .full .top_rht .key dd{ width:358px;}
 .full #bdshare{ width:186px;}
 .full .share_box{ width:460px;}
+
+ul.pl-ct li {color: #000;}
+li.pl-ctlist.pl-cto {
+    font-weight: bold;
+}
 
 
 /*表单验证*/

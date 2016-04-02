@@ -177,6 +177,9 @@ line = {
        }
        $('#total_price_s').html(0);
        $("#stock").html(stock);
+	   $("#calendar").show();
+        //$("#cal_hide").show();
+        line.show_price_type();
     },
      //显示线路价格
     show_price_type:function(){

@@ -3,7 +3,7 @@
 <block name="body">
     <section class="main auto fix">
         <div class="ytip_02 fs">
-            <a href="#">首页</a> -> <a href="#">全部尾单</a> -> <a href="#">港澳台</a>
+            <a href="/">首页</a> -> <a href="javascript:void(0);">{$line_info['title']}</a>
         </div>
         <div class="abs yfen">
             <div class="bdsharebuttonbox">
@@ -15,6 +15,7 @@
             </div>
         </div>
         <div class="ydiv9 fix">
+            <notempty name="line_info['bianhao']"><span style="float: right; margin: 50px 20px 0 0;">编号：{$line_info['bianhao']}</span></notempty>
             <div class="ydivzuo">
                 <font>
                 <span>
@@ -51,7 +52,7 @@
                 <br>
                 <span>发团日期: </span> 指定日期，请提前{$line_info['earlier_date']}天报名
                 <br>
-                <span>出发城市: </span> {$line_info['starting']}
+                <span>出发城市: </span> {$line_info['start']}
                 <br>
                 <span>行程天数: </span> {$line_info['daynum']}天
                 <br>
@@ -129,7 +130,7 @@
                                 <span>特价不二</span> 价格只会更低
                             </div>
                             <div class="y_zi2">
-                                <span>特价不二</span> 专业的操作，优秀的领队，让您有个舒心又放松邮轮假期；完全放松，多项免费娱乐设施供 您自由选择，您可以随意安排自己的整个游程。
+                                <span>特价不二</span> 一样的旅行不一样的价格，致力于提供旅游行业内的特价尾单，让您以最优惠的价格，获得最优质的旅游产品。
                             </div>
                         </div>
                     </li>
@@ -143,7 +144,7 @@
                                 <span>最优线路</span> 行程精心筛选
                             </div>
                             <div class="y_zi2">
-                                <span>最优线路</span> 专业的操作，优秀的领队，让您有个舒心又放松邮轮假期；完全放松，多项免费娱乐设施供 您自由选择，您可以随意安排自己的整个游程。
+                                <span>最优线路</span> 依托国内品牌旅游产品供应商，精选国内外热门、经典旅游线路，让您一次出行，畅游目的地，旅程充实、乐趣、舒适。
                             </div>
                         </div>
                     </li>
@@ -157,7 +158,7 @@
                                 <span>贴心服务</span> 服务全程跟踪
                             </div>
                             <div class="y_zi2">
-                                <span>贴心服务</span> 专业的操作，优秀的领队，让您有个舒心又放松邮轮假期；完全放松，多项免费娱乐设施供 您自由选择，您可以随意安排自己的整个游程。
+                                <span>贴心服务</span> 专业旅游顾问，一对一服务。从您来电话咨询到行程结束，贴心服务贯穿全程，及时响应您的合理需求，高效处理您的反馈问题。
                             </div>
                         </div>
                     </li>
@@ -171,7 +172,7 @@
                                 <span>让您安心</span> 品牌质量保证 支付安全
                             </div>
                             <div class="y_zi2">
-                                <span>让您安心</span> 专业的操作，优秀的领队，让您有个舒心又放松邮轮假期；完全放松，多项免费娱乐设施供 您自由选择，您可以随意安排自己的整个游程。
+                                <span>让您安心</span> 国家旅游局许可，具有经营出境旅游业务资质的国际旅行社。正规合同签订，标准流程操作。产品预订线上线下支付安全、便捷。
                             </div>
                         </div>
                     </li>
@@ -223,7 +224,11 @@
                 <a class="ydi" name="ys3"> </a>
                 <a class="yspan4">预定指南：</a>
                 <div class="yaa editor">
+                    <span style=" font-size:14px; font-weight:bold; color:#277fda; display:block;">{$line_info['remark'][0]}</span>
                     {$line_info['remark'][1]}
+
+                    <span style=" font-size:14px; font-weight:bold; color:#277fda; display:block;">{$line_info['remark'][2]}</span>
+                    {$line_info['remark'][3]}
                 </div>
 
                 <a class="ydi" name="ys4"> </a>

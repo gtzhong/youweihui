@@ -145,21 +145,14 @@
                 <span>预定提醒</span>
             </h2>
             <ul>
-                <span style=" font-size:14px; font-weight:bold; color:#277fda; display:block;">费用包含：</span> 1、北京往返全程团队经济舱机票及税金；
-                <br /> 2、全程领队服务费；
-                <br /> 3、因私护照土耳其旅游签证费；
-                <br /> 4、领队服务费。
-                <br /> 5、酒店：全程当地五星级酒店双人标准间；若团队出现单间，我社有权利提前说明情况并调整夫妻及亲属住宿安排，请给予理解；如有特别要求出现单间请补单房差。
-                <br /> 6、膳食：西式自助早餐，中式团队午晚餐（6菜1汤+米饭+茶+水果）或当地餐；（用餐时间在飞机或船上以机船餐为准，不再另补）
-                <br /> 7、交通：豪华空调旅游巴士；
-                <br /> 8、导游：专业中文导游/当地专职司机；
-                <br /> 9、景点：行程中所列之常规景点首道门票。
-                <span style=" font-size:14px; font-weight:bold; color:#277fda; display:block;">费用不含：</span> 1、全程单间差：￥3200元/间（如入住单间则另付单间差费用）
-                <br /> 2、全程境外司机导游小费USD100/人/全程；
-                <br /> 3、行李物品的保管费及超重费；
-                <br /> 4、行程表中的自由活动时间可选项目及行程表以外的景点门票
-                <br /> 5、客人私人费用（如：酒店电话、洗衣、饮料等）；
-                <br /> 6、在非本公司所能控制的情况下，如罢工及交通延误等不可抗拒因素而引起的额外开支。
+                <div class="editor">
+                    <span style=" font-size:14px; font-weight:bold; color:#277fda; display:block;">特别提示:</span>
+                    {$visa_info['clint']}
+                </div>
+                <div class="editor" style="line-height: 36px;">
+                    <span style=" font-size:14px; font-weight:bold; color:#277fda; display:block;">签证详情:</span>
+                    {$visa_info['shuoming']}
+                </div>
             </ul>
         </div>
     </div>

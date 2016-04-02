@@ -8,7 +8,7 @@ use Think\Page;
  * @author huajie <banhuajie@163.com>
  */
 class LineController extends AdminController {
-    private $site_id        =   null;
+    private $site_id = null;
     /**
      * 显示左边菜单，进行权限控制
      * @author huajie <banhuajie@163.com>
@@ -87,6 +87,23 @@ class LineController extends AdminController {
         if(!is_null($tc_type)){
             $map['tc_type'] = $tc_type;
         }
+        $status = I('status', 2);
+        switch ($status) {
+            case '1':
+                // $map['status'] = $status;
+                break;
+            case '2': //正常
+                $map['status'] = 1;
+                break;
+            case '3': //隐藏
+                $map['status'] = 0;
+                break;
+            case '4': //下架
+                $map['status'] = 0;
+                break;
+        }
+
+
         $list   = $this->lists('Line', $map, 'status desc, line_id desc');
         int_to_string($list);
         // print_r($list);
@@ -119,7 +136,7 @@ class LineController extends AdminController {
      * 线路修改
      */
     public function edit(){
-        $line_id     =   I('line_id');
+        $line_id = I('line_id');
         if(empty($line_id)){
             // $this->error('参数不能为空！');
         }
@@ -142,7 +159,12 @@ class LineController extends AdminController {
                     }
                     $LineType->addAll($dataList);
                 }
-                $this->success('成功', U('edit2', array('line_id'=>$line_id)));
+                if (I('url') == 1) {
+                    $this->success('成功', U('edit2', array('line_id'=>$line_id)));
+                }
+                if (I('status') == 1) {
+                    $this->success('成功', U('index'));
+                }
             } else {
                 $this->error($Line->getError());
             }
@@ -269,7 +291,7 @@ class LineController extends AdminController {
         if (IS_POST) {
             $result = $LineTc->update();
             if ($result) {
-                $Line->where(array('line_id'=>$line_id))->setField('status', NOW_TIME);
+                $Line->where(array('line_id'=>$line_id))->setField('update_time', NOW_TIME);
                 $this->success('成功', U('Line/edit2', array('line_id'=>$line_id)));
             } else {
                 $this->error($Line->getError());
@@ -320,5 +342,19 @@ class LineController extends AdminController {
             $this->error('失败');
         }
     }
+    // 删除线路操作
+    public function del($line_id = 0){
+        if (empty($line_id)) {
+            $this->error('参数错误');
+        }
+        $map = array('line_id' => $line_id);
+        $result = D('Line')->where($map)->delete();
+        if ($result) {
+            D('LineTc')->where($map)->delete();
+            $this->success('成功');
+        } else {
+            $this->error('失败');
+        }
 
+    }
 }

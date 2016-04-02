@@ -24,7 +24,7 @@ function send_sms($mobile, $data, $tid = 'default') {
         'suOrder' => '亲，您的订单已确认并付完全款，订单编号orderid，已成功预订旅游产品，祝您旅途愉快。客服电话：kefu。',
         'default' => 'content'
     );
-    $data['kefu'] = '4000000000';
+    $data['kefu'] = '4008765261';
     // $content = str_replace('%s', $data, $temp[$tid]);
     $content = strtr($temp[$tid], $data);
     $para = array(
@@ -216,12 +216,15 @@ function get_start_date($data){
 function get_line_position($catid='',$posid=1,$num=5,$order='line_id desc'){
     $LineView = D('LineView');
     $map = array(
-        'is_position' => $posid,
-        'type_id' =>   array('in', $catid . ''),
+        'type_id' => array('in', $catid . ''),
         'end_time' => array('gt', NOW_TIME),
         'is_default' => 1,
     );
-    $line_lists = $LineView->field('line_id,title,dest,start,images,price,best_price')->where($map)->order($order)->limit(0,$num)->select();
+    if ($posid) {
+        $map['is_position'] = $posid;
+    }
+
+    $line_lists = $LineView->field('line_id,title,sub_title,dest,start,images,price,best_price')->where($map)->order($order)->group('line_id')->limit(0,$num)->select();
     foreach ($line_lists as $key => $val) {
           $line_lists[$key]['img'] = get_cover(array_shift(explode(',', $val['images'])), 'path');
           $line_lists[$key]['url'] = U('Line/show', array('id'=>$val['line_id']));

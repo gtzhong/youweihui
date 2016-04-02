@@ -7,13 +7,26 @@
       <div class="ydiv1 fix">
           <div class="ydivl fl pt20 pb20">
               <img src="{$detail['image']}" alt="">
-              <div class="yqianz fl">
+              <div class="yqianz fl" style="width:530px;">
                   <a href="#" class="ya1">{$detail['title']}</a>
-                  办理时间：{$detail['work_time']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  有效期：{$detail['expiration']}<br/>
+                  <!-- 办理时间：{$detail['work_time']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  有效期：{$detail['expiration']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   最多停留：{$detail['stay_days']}<br>
-                  邀请函：{$detail['is_yaoqing']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  面试：{$detail['is_mianshi']}<br/>
+
+                  邀 请 函：{$detail['is_yaoqing']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  面试：{$detail['is_mianshi']}<br/> -->
+                    <table>
+                        <tr>
+                            <td>办理时间：{$detail['work_time']}</td>
+                            <td>有&nbsp;&nbsp;效&nbsp;期：{$detail['expiration']}</td>
+                            <td>最多停留：{$detail['stay_days']}</td>
+                        </tr>
+                        <tr>
+                            <td>邀&nbsp;&nbsp;请&nbsp;函：{$detail['is_yaoqing']}</td>
+                            <td>面&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;试：{$detail['is_mianshi']}</td>
+                        </tr>
+                    </table>
+
                   <div class="ydid">
                       <font>￥</font><span>{$detail['price_cncn']}</span> / 人起
                       <a href="{:U('Visa/order', array('visa_id'=>$detail['visa_id']))}" class="ya2">立即预定</a>

@@ -9,9 +9,10 @@
         <div class="yk_01 fix">
             <span>出发城市：</span>
             <div class="yy1">
-                <a href="{:U('Line/index', array('catid'=>$souso['catid'], 'start'=>'', 'dest'=>$souso['dest'], 'ct_type'=>$souso['ct_type'], 'daynum'=>$souso['daynum'], 'price'=>$souso['price'], 'sort'=>$souso['sort']))}" class="ya3 <eq name="souso['start']" value="">act</eq>">全部</a>
+                <a href="{:U('Line/index', array_merge($souso, array('start'=>'')))}" class="ya3 <eq name="souso['start']" value="">act</eq>">全部</a>
                 <volist name=":C('START_LIST')" id="val">
-                    <a href="{:U('Line/index', array('catid'=>$souso['catid'], 'start'=>$val, 'dest'=>$souso['dest'], 'ct_type'=>$souso['ct_type'], 'daynum'=>$souso['daynum'], 'price'=>$souso['price'], 'sort'=>$souso['sort']))}" <eq name="souso['start']" value="$val">class="act"</eq>>{$val}</a>
+                    <a href="{:U('Line/index', array_merge($souso, array('start'=>$val)))}" <eq name="souso['start']" value="$val">class="act"</eq>>{$val}</a>
+                    <!-- <a href="{:U('Line/index', array('catid'=>$souso['catid'], 'start'=>$val, 'dest'=>$souso['dest'], 'ct_type'=>$souso['ct_type'], 'daynum'=>$souso['daynum'], 'price'=>$souso['price'], 'sort'=>$souso['sort']))}" <eq name="souso['start']" value="$val">class="act"</eq>>{$val}</a> -->
                 </volist>
             </div>
         </div>
@@ -19,7 +20,7 @@
            <div class="fix yfff">
                 <span>目的地：</span>
                 <div class="yy1">
-                    <a href="{:U('Line/index', array('catid'=>$souso['catid'], 'start'=>$souso['start'], 'dest'=>'', 'ct_type'=>$souso['ct_type'], 'daynum'=>$souso['daynum'], 'price'=>$souso['price'], 'sort'=>$souso['sort']))}" class="ya3 <eq name="souso['dest']" value="">act</eq>">全部</a>
+                    <a href="{:U('Line/index', array_merge($souso, array('dest'=>'')))}" class="ya3 <eq name="souso['dest']" value="">act</eq>">全部</a>
                     <notempty name="categorys['_']">
                         <volist name="categorys['_']" id="val">
                             <a class="show" href="javascript:void(0);">{$val['title']}</a>
@@ -36,12 +37,15 @@
                 <notempty name="categorys['_']">
                     <volist name="categorys['_']" id="val">
                     	<div class="yydiv">
-                        	<a href="{:U('Line/index', array('catid'=>$souso['catid'], 'start'=>$souso['start'], 'dest'=>$val['id'], 'ct_type'=>$souso['ct_type'], 'daynum'=>$souso['daynum'], 'price'=>$souso['price'], 'sort'=>$souso['sort']))}" <eq name="souso['dest']" value="$val['id']">class="act"</eq> class="ya3">全部</a>
-                            <notempty name="val['_']">
-                                <volist name="val['_']" id="v">
-                                    <a href="{:U('Line/index', array('catid'=>$souso['catid'], 'start'=>$souso['start'], 'dest'=>$v['id'], 'ct_type'=>$souso['ct_type'], 'daynum'=>$souso['daynum'], 'price'=>$souso['price'], 'sort'=>$souso['sort']))}" <eq name="souso['dest']" value="$v['id']">class="act"</eq>>{$v['title']}</a>
-                                </volist>
-                            </notempty>
+                        	<a href="{:U('Line/index',array_merge($souso, array('dest'=>$val['id'])))}" <eq name="souso['dest']" value="$val['id']">class="act"</eq> class="ya3">全部</a>
+                            <div style="margin-left: 70px;margin-top: -25px;line-height: 25px;">
+                                <notempty name="val['_']">
+                                    <volist name="val['_']" id="v">
+                                        <a href="{:U('Line/index', array_merge($souso, array('dest'=>$v['id'])))}" <eq name="souso['dest']" value="$v['id']">class="act"</eq>>{$v['title']}</a>
+                                        <if condition="$i eq 14"><br /></if>
+                                    </volist>
+                                </notempty>
+                            </div>
                         </div>
                     </volist>
                 </notempty>
@@ -50,27 +54,27 @@
         <div class="yk_01 fix">
             <span>参团性质：</span>
             <div class="yy1">
-                <a href="{:U('Line/index', array('catid'=>$souso['catid'], 'start'=>$souso['start'], 'dest'=>$souso['dest'], 'ct_type'=>0, 'daynum'=>$souso['daynum'], 'price'=>$souso['price'], 'sort'=>$souso['sort']))}" class="ya3 <eq name="souso['ct_type']" value="">act</eq>">全部</a>
+                <a href="{:U('Line/index', array_merge($souso, array('ct_type'=>0)))}" class="ya3 <eq name="souso['ct_type']" value="">act</eq>">全部</a>
                 <volist name=":C('CAN_TUAN')" id="val">
-                    <a href="{:U('Line/index', array('catid'=>$souso['catid'], 'start'=>$souso['start'], 'dest'=>$souso['dest'], 'ct_type'=>$key, 'daynum'=>$souso['daynum'], 'price'=>$souso['price'], 'sort'=>$souso['sort']))}" <eq name="souso['ct_type']" value="$key">class="act"</eq>>{$val}</a>
+                    <a href="{:U('Line/index', array_merge($souso, array('ct_type'=>$key)))}" <eq name="souso['ct_type']" value="$key">class="act"</eq>>{$val}</a>
                 </volist>
             </div>
         </div>
         <div class="yk_01 fix">
             <span>旅行天数：</span>
             <div class="yy1">
-                <a href="{:U('Line/index', array('catid'=>$souso['catid'], 'start'=>$souso['start'], 'dest'=>$souso['dest'], 'ct_type'=>$souso['ct_type'], 'daynum'=>0, 'price'=>$souso['price'], 'sort'=>$souso['sort']))}" class="ya3 <eq name="souso['daynum']" value="">act</eq>">全部</a>
+                <a href="{:U('Line/index', array_merge($souso, array('daynum'=>0)))}" class="ya3 <eq name="souso['daynum']" value="">act</eq>">全部</a>
                 <volist name=":C('DAY_NUM')" id="val">
-                    <a href="{:U('Line/index', array('catid'=>$souso['catid'], 'start'=>$souso['start'], 'dest'=>$souso['dest'], 'ct_type'=>$souso['ct_type'], 'daynum'=>$key, 'price'=>$souso['price'], 'sort'=>$souso['sort']))}" <eq name="souso['daynum']" value="$key">class="act"</eq>>{$val}</a>
+                    <a href="{:U('Line/index', array_merge($souso, array('daynum'=>$key)))}" <eq name="souso['daynum']" value="$key">class="act"</eq>>{$val}</a>
                 </volist>
             </div>
         </div>
         <div class="yk_01 fix ybbb">
             <span>价格区间：</span>
             <div class="yy1">
-                <a href="{:U('Line/index', array('catid'=>$souso['catid'], 'start'=>$souso['start'], 'dest'=>$souso['dest'], 'ct_type'=>$souso['ct_type'], 'daynum'=>$souso['daynum'], 'price'=>'', 'sort'=>$souso['sort']))}" class="ya3 <eq name="souso['price']" value="">act</eq>">全部</a>
+                <a href="{:U('Line/index', array_merge($souso, array('price'=>'')))}" class="ya3 <eq name="souso['price']" value="">act</eq>">全部</a>
                 <volist name=":C('PRICE_LISt')" id="val">
-                    <a href="{:U('Line/index', array('catid'=>$souso['catid'], 'start'=>$souso['start'], 'dest'=>$souso['dest'], 'ct_type'=>$souso['ct_type'], 'daynum'=>$souso['daynum'], 'price'=>$key, 'sort'=>$souso['sort']))}" <eq name="souso['price']" value="$key">class="act"</eq>>{$val}</a>
+                    <a href="{:U('Line/index', array_merge($souso, array('price'=>$key)))}" <eq name="souso['price']" value="$key">class="act"</eq>>{$val}</a>
                 </volist>
             </div>
         </div>
@@ -79,14 +83,14 @@
         <div class="ydiv7 fl">
             <div class="ytip_03 fs">
                 <span>排序条件：</span>
-                <a href="{:U('Line/index', array('catid'=>$souso['catid'], 'start'=>$souso['start'], 'dest'=>$souso['dest'], 'ct_type'=>$souso['ct_type'], 'daynum'=>$souso['daynum'], 'price'=>$souso['price'], 'sort'=>''))}" <eq name="souso['sort']" value="">class="xz"</eq>>默认</a>
-                <a href="{:U('Line/index', array('catid'=>$souso['catid'], 'start'=>$souso['start'], 'dest'=>$souso['dest'], 'ct_type'=>$souso['ct_type'], 'daynum'=>$souso['daynum'], 'price'=>$souso['price'], 'sort'=>'base_order'))}" <eq name="souso['sort']" value="base_order">class="xz"</eq>>销量</a>
-                <a href="{:U('Line/index', array('catid'=>$souso['catid'], 'start'=>$souso['start'], 'dest'=>$souso['dest'], 'ct_type'=>$souso['ct_type'], 'daynum'=>$souso['daynum'], 'price'=>$souso['price'], 'sort'=>'price'))}" <eq name="souso['sort']" value="price">class="xz"</eq>>价格</a>
+                <a href="{:U('Line/index', array_merge($souso, array('sort'=>'')))}" <eq name="souso['sort']" value="">class="xz"</eq>>默认</a>
+                <a href="{:U('Line/index', array_merge($souso, array('sort'=>'base_order')))}" <eq name="souso['sort']" value="base_order">class="xz"</eq>>销量</a>
+                <a href="{:U('Line/index', array_merge($souso, array('sort'=>'price')))}" <eq name="souso['sort']" value="price">class="xz"</eq>>价格</a>
             </div>
             <div class="y_div3">
                 <volist name="list" id="val">
                     <div class="y_k02 fix">
-                        <img src="<empty name="val['img']">__IMG__/y_04.jpg<else/>{$val['img']}</empty>" alt="{$val['title']}" width="262" height="194" class="fl">
+                        <img src="<empty name="val['img']">__IMG__/y_04.jpg<else/>{$val['img']}</empty>" alt="{$val['title']}" width="262" height="194" class="fl" onclick="location.href='{$val['url']}'">
                         <div class="y_art02 fl">
                             <a href="{$val['url']}" class="y_a3 fs">{$val['start']} - {$val['dest']}</a>
                             <a href="{$val['url']}" class="y_a4">{$val['title']}</a>

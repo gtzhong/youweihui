@@ -39,15 +39,22 @@
                             <div class="ilx-schlist-wrap clearfix">
                                 <div class="ilx-clsprt"></div>
                                 <volist name="line_cate" id="value">
-                                    <ul class="pl-ctpl">
-                                        <li class="ilx-sch-li ilx-slas" data-type="catid" data-catid="{$value['catid']}">{$value['title']}</li>
+                                    <div class="catid" style="overflow: hidden;">
+                                        <ul class="pl-ct clearfix" style="width:400px;display:inline-block;">
+                                            <li class="ilx-sch-li ilx-slas" data-type="catid" data-catid="{$value['id']}">{$value['title']}</li>
+                                            <volist name="value['_']" id="val">
+                                                <li class="pl-ctlist">{$val['title']}</li>
+                                            </volist>
+                                        </ul>
                                         <volist name="value['_']" id="val">
-                                            <li class="ilx-sch-li ilx-slas" data-type="dest" data-dest="{$val['id']}" data-destcatid="{$value['id']}">{$val['title']}</li>
+                                            <ul class="pl-ctpl" data-cate="{$value['id']}" style="display:none;">
+                                                <volist name="val['_']" id="v">
+                                                    <li class="ilx-sch-li ilx-slas" data-type="dest" data-dest="{$v['id']}" data-destcatid="{$value['id']}">{$v['title']}</li>
+                                                </volist>
+                                            </ul>
                                         </volist>
-                                    </ul>
+                                    </div>
                                 </volist>
-
-
                             </div>
                         </div>
                     </div>
@@ -115,7 +122,7 @@
                                 <span>特价不二</span> 价格只会更低
                             </div>
                             <div class="y_zi2">
-                                <span>特价不二</span> 专业的操作，优秀的领队，让您有个舒心又放松邮轮假期；完全放松，多项免费娱乐设施供 您自由选择，您可以随意安排自己的整个游程。
+                                <span>特价不二</span> 一样的旅行不一样的价格，致力于提供旅游行业内的特价尾单，让您以最优惠的价格，获得最优质的旅游产品。
                             </div>
                         </div>
                     </li>
@@ -129,7 +136,7 @@
                                 <span>最优线路</span> 行程精心筛选
                             </div>
                             <div class="y_zi2">
-                                <span>最优线路</span> 专业的操作，优秀的领队，让您有个舒心又放松邮轮假期；完全放松，多项免费娱乐设施供 您自由选择，您可以随意安排自己的整个游程。
+                                <span>最优线路</span> 依托国内品牌旅游产品供应商，精选国内外热门、经典旅游线路，让您一次出行，畅游目的地，旅程充实、乐趣、舒适。
                             </div>
                         </div>
                     </li>
@@ -143,7 +150,7 @@
                                 <span>贴心服务</span> 服务全程跟踪
                             </div>
                             <div class="y_zi2">
-                                <span>贴心服务</span> 专业的操作，优秀的领队，让您有个舒心又放松邮轮假期；完全放松，多项免费娱乐设施供 您自由选择，您可以随意安排自己的整个游程。
+                                <span>贴心服务</span> 专业旅游顾问，一对一服务。从您来电话咨询到行程结束，贴心服务贯穿全程，及时响应您的合理需求，高效处理您的反馈问题。
                             </div>
                         </div>
                     </li>
@@ -157,7 +164,7 @@
                                 <span>让您安心</span> 品牌质量保证 支付安全
                             </div>
                             <div class="y_zi2">
-                                <span>让您安心</span> 专业的操作，优秀的领队，让您有个舒心又放松邮轮假期；完全放松，多项免费娱乐设施供 您自由选择，您可以随意安排自己的整个游程。
+                                <span>让您安心</span> 国家旅游局许可，具有经营出境旅游业务资质的国际旅行社。正规合同签订，标准流程操作。产品预订线上线下支付安全、便捷。
                             </div>
                         </div>
                     </li>
@@ -169,7 +176,7 @@
     <section class="main auto">
         <div class="main1">
             <div class="main1_top fix">
-                <span><img src="__IMG__/bg25.png" width="29" height="28" alt=""> 特价旅游</span>
+                <span><img src="__IMG__/bg25.png" width="29" height="28" alt=""> 版主推荐</span>
                 <a href="{:U('Line/index')}" title="">更多 ></a>
             </div>
             <div class="main1_bottom fix">
@@ -179,7 +186,7 @@
                             <a href="{$val['url']}" title="">
                                 <img src="{$val['img']}" width="268" height="197">
                                 <em>立省 ￥{$val['save']}</em>
-                                <p>{$val['sub_title']}</p>
+                                <p>{$val['title']} <e style="font-size:12px;">{$val['sub_title']}</e></p>
                                 <span>{$val['title']}</span>
                             </a>
                         </dt>
@@ -189,7 +196,6 @@
                         </dd>
                     </dl>
                 </volist>
-
             </div>
         </div>
         <div class="main2">
@@ -379,21 +385,10 @@
 
             </div>
         </div>
-
-
-
-
-
-
-
-
-
         <div class="main2_top fix">
             <span>国内特卖</span>
             <a href="{:U('Line/index',array('catid'=>5))}" title="">更多 ></a>
         </div>
-
-
         <div class="main2_bottom fix">
             <div class="title fix">
                 <div class="title1 xz">精选</div>
@@ -487,7 +482,7 @@
         </div>
         <div class="main3">
             <div class="main3_top fix">
-                <span>签证旅游</span>
+                <span>特价签证</span>
                 <a href="{:U('Visa/index')}" title="">更多 ></a>
             </div>
             <div class="main3_bottom fix">

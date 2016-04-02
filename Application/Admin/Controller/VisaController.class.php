@@ -87,7 +87,18 @@ class VisaController extends AdminController {
         if(!is_null($l_type)){
             $map['l_type'] = $l_type;
         }
-
+        $status = I('status', 2);
+        switch ($status) {
+            case '1':
+                // $map['status'] = $status;
+                break;
+            case '2': //正常
+                $map['status'] = 1;
+                break;
+            case '3': //隐藏
+                $map['status'] = 0;
+                break;
+        }
         $sub_ids = C('QZ_TYPE');
         $list = $this->lists('Visa', $map, 'status desc, visa_id desc');
         foreach($list as $k=>$val){
@@ -173,6 +184,19 @@ class VisaController extends AdminController {
             $this->display();
     }
 
+    // 删除线路操作
+    public function del($visa_id = 0){
+        if (empty($visa_id)) {
+            $this->error('参数错误');
+        }
+        $map = array('visa_id' => $visa_id);
+        $result = D('Visa')->where($map)->delete();
+        if ($result) {
+            $this->success('成功');
+        } else {
+            $this->error('失败');
+        }
 
+    }
 
 }

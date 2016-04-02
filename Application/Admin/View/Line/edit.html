@@ -66,9 +66,15 @@
 					<label class="item-label">参团性质<span class="check-tips">（必填）</span></label>
 					<volist name=":C('CAN_TUAN')" id="val">
 						<label class="radio">
-							<input type="radio" value="{$key}" name="ct_type" <eq name="data['l_type']" value="$key">checked="checked"</eq>>{$val}
+							<input type="radio" value="{$key}" name="ct_type" <eq name="data['ct_type']" value="$key">checked="checked"</eq>>{$val}
 						</label>
 					</volist>
+				</div>
+			</div>
+			<div class="form-item cf">
+				<div class="controls">
+					<label class="item-label">线路编号<span class="check-tips">（非必填）</span></label>
+					<input type="text" class="text input-large" name="bianhao" value="{$data['bianhao']}">
 				</div>
 			</div>
 			<div class="form-item cf">
@@ -120,21 +126,46 @@
 			<div class="form-item cf">
 				<div class="controls">
 					<label class="item-label">游客需提前几天报名<span class="check-tips">（必填）</span></label>
-					<input type="text" class="text input-mid" name="earlier_date" value="{$data['earlier_date']|default=3}">
+					<input type="text" class="text input-mid" name="earlier_date" value="{$data['earlier_date']|default=''}">
 				</div>
 			</div>
 			<div class="form-item cf">
 				<div class="controls">
 					<label class="item-label">行程天数<span class="check-tips">（必填）</span></label>
-					<input type="text" class="text input-mid" name="daynum" value="{$data['daynum']|default=3}">
+					<input type="text" class="text input-mid" name="daynum" value="{$data['daynum']|default=''}">
 				</div>
 			</div>
 			<div class="form-item cf">
 				<div class="controls">
 					<label class="item-label">交通方式<span class="check-tips">（必填）</span></label>
-					<input type="text" class="text input-mid" name="traffic" value="{$data['traffic']|default='飞机去飞机回'}">
+					<select id="qu">
+						<option value="">请选择</option>
+						<option value="飞机">飞机</option>
+						<option value="火车">火车</option>
+						<option value="汽车">汽车</option>
+						<option value="轮船">轮船</option>
+						<option value="动车">动车</option>
+						<option value="高铁">高铁</option>
+					</select> 去
+					<select id="hui">
+						<option value="">请选择</option>
+						<option value="飞机">飞机</option>
+						<option value="火车">火车</option>
+						<option value="汽车">汽车</option>
+						<option value="轮船">轮船</option>
+						<option value="动车">动车</option>
+						<option value="高铁">高铁</option>
+					</select> 回
+					<input id="traffic" type="text" class="text input-mid" name="traffic" value="{$data['traffic']|default='飞机去飞机回'}">
 				</div>
 			</div>
+			<script>
+				$(function(){
+					$("#qu, #hui").bind('change', function(){
+						$("#traffic").val($("#qu").val() + '去' + $("#hui").val() + '回');
+					})
+				})
+			</script>
 			<div class="form-item cf">
 				<div class="controls">
 					<label class="item-label">出发地<span class="check-tips">（必填）</span></label>
@@ -206,7 +237,10 @@
 			</div>
 		</div>
 		<div class="form-item cf">
-			<button class="btn btn-return ajax-post hidden" id="submit" type="submit" name="0" target-form="form-horizontal">确定保存</button>
+			<notempty name="data['line_id']">
+				<button class="btn ajax-post hidden" id="submit1" type="submit" value="1" target-form="form-horizontal">确定发布</button>
+			</notempty>
+			<button class="btn ajax-post hidden" id="submit0" type="submit" target-form="form-horizontal">保存下一步</button>
 			<input type="hidden" name="line_id" value="{$data['line_id']}"/>
 		</div>
 	</form>
@@ -220,7 +254,12 @@
 <script type="text/javascript" src="__STATIC__/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript" src="__STATIC__/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 <script type="text/javascript">
-
+$('#submit1').click(function(){
+	$('#form').append('<input type="hidden" name="status" value="1" >');
+});
+$('#submit0').click(function(){
+	$('#form').append('<input type="hidden" name="url" value="1" >');
+});
 Think.setValue("type", {$data.type|default='""'});
 Think.setValue("display", {$data.display|default=0});
 

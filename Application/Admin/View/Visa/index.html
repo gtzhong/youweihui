@@ -17,6 +17,15 @@
 		<!-- 高级搜索 -->
 		<div class="search-form fr cf">
 			<div class="sleft">
+				<div class="drop-down">
+					<span id="sch-sort-txt" class="sort-txt" data="">所有</span>
+					<i class="arrow arrow-down"></i>
+					<ul id="sub-sch-menu" class="nav-list hidden">
+						<li><a href="javascript:;" value="1">所有</a></li>
+						<li><a href="javascript:;" value="2">正常</a></li>
+						<li><a href="javascript:;" value="3">隐藏</a></li>
+					</ul>
+				</div>
 				<input type="text" name="title" class="search-input" value="{:I('title')}" placeholder="请输入线路标题">
 				<a class="sch-btn" href="javascript:void(0);" id="search" url="{:U('index', array('site_id'=>$site_id), false)}"><i class="btn-search"></i></a>
 			</div>
@@ -30,12 +39,13 @@
             <thead>
                 <tr>
                     <th class="row-selected row-selected"><input class="check-all" type="checkbox"></th>
+					<th>ID</th>
                     <th>产品名称</th>
                     <th>人气</th>
                     <th>产品类型</th>
                     <th>排序</th>
                     <th>最后更新</th>
-					          <th>有效期至</th>
+					<th>有效期至</th>
                     <th>订单</th>
                     <th>操作</th>
                 </tr>
@@ -46,7 +56,8 @@
                 <volist name="_list" id="val">
                     <tr>
 						<td><input class="ids" type="checkbox" name="visa_id[]" value="{$val['visa_id']}" /></td>
-						<td><a href="{:U('Home/visa/index', array('id'=>$val['visa_id']))}" target="_blank">{$val['title']}</a></td>
+						<td>{$val['visa_id']}</td>
+						<td><a href="{:U('Home/visa/show', array('id'=>$val['visa_id']))}" target="_blank">{$val['title']}</a></td>
 						<td>{$val['base_hits']}</td>
 						<td>{$val['sub_id']}</td>
 						<td>{$val['sort']}</td>
@@ -60,6 +71,7 @@
 							<a href="{:U('changeStatus', array('status'=>1, 'visa_id'=>$val['visa_id']))}" class="confirm ajax-get">显示</a>
 							</eq>
 							<a href="{:U('edit', array('site_id'=>$site_id,'visa_id'=>$val['visa_id']))}" class="authorize">修改</a>
+							<a href="{:U('del', array('site_id'=>$site_id,'visa_id'=>$val['visa_id']))}" class="confirm ajax-get">删除</a>
 			            </td>
                     </tr>
                 </volist>
@@ -74,28 +86,47 @@
 
 </block>
 <block name="script">
-	<script type="text/javascript">
-	//搜索功能
-	$("#search").click(function(){
-		var url = $(this).attr('url');
-        var query  = $('.search-form').find('input').serialize();
-        query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g,'');
-        query = query.replace(/^&/g,'');
-        if( url.indexOf('?')>0 ){
-            url += '&' + query;
-        }else{
-            url += '?' + query;
-        }
-		window.location.href = url;
-	});
-	//回车搜索
-	$(".search-input").keyup(function(e){
-		if(e.keyCode === 13){
-			$("#search").click();
-			return false;
-		}
-	});
-	//导航高亮
-	highlight_subnav('{:U('index')}');
-	</script>
+    <script type="text/javascript">
+		//搜索功能
+		$("#search").click(function(){
+			var url = $(this).attr('url');
+			var status = $("#sch-sort-txt").attr("data");
+			var query  = $('.search-form').find('input').serialize();
+			query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g,'');
+			query = query.replace(/^&/g,'');
+			if(status != ''){
+				query = 'status=' + status + "&" + query;
+			}
+			if( url.indexOf('?')>0 ){
+				url += '&' + query;
+			}else{
+				url += '?' + query;
+			}
+			window.location.href = url;
+		});
+
+		/* 状态搜索子菜单 */
+		$(".search-form").find(".drop-down").hover(function(){
+			$("#sub-sch-menu").removeClass("hidden");
+		},function(){
+			$("#sub-sch-menu").addClass("hidden");
+		});
+		$("#sub-sch-menu li").find("a").each(function(){
+			$(this).click(function(){
+				var text = $(this).text();
+				$("#sch-sort-txt").text(text).attr("data",$(this).attr("value"));
+				$("#sub-sch-menu").addClass("hidden");
+			})
+		});
+
+        //回车搜索
+        $(".search-input").keyup(function(e) {
+            if (e.keyCode === 13) {
+                $("#search").click();
+                return false;
+            }
+        });
+        //导航高亮
+        highlight_subnav('{:U('index')}');
+    </script>
 </block>
